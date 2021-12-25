@@ -1,11 +1,11 @@
 <template>
     <div>
-        Hello World From Vue
+        <h1>Root Components</h1>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'HelloWorld'
+name: 'App',
 }
 </script>
