@@ -14,6 +14,7 @@ php artisan db:seed --class=UsersTableSeeder
 
 State Management : npm install vuex --save
 Router Management : npm install vue-router@4
+Http Request : npm install axios --save
 
 ## Atresna Sponsors
 
