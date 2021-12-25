@@ -2,8 +2,8 @@
     <div>
         <h1>Login</h1>
         <form @submit.prevent="login">
-            <input type="email" name="email" id="" v-model="email" />
-            <input type="password" name="password" id="" v-model="password" />
+            <input type="email" name="email" v-model="email" />
+            <input type="password" name="password" v-model="password" />
             <button type="submit">Login</button>
         </form>
     </div>

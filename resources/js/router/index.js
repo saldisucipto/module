@@ -1,49 +1,43 @@
 // Import Library
-import {
-    createRouter,
-    createWebHistory
-} from "vue-router";
-// import Home Vue Components
-import Home from "../views/Home.vue"
+import { createRouter, createWebHistory } from "vue-router";
 
 // Router Variable
-const routes = [{
-        path: "/", // path adalah url yang akan diakses '/' ini adalah root url
-        component: Home, // Componnent adalah Component yang akan diakses pertama kali
-        name: "Home",
+const routes = [
+    {
+        path: "/",
+        component: () => import("../views/Login.vue"),
+        name: "Login",
     },
     {
-        path: "/login",
-        component: () => import('../views/Login.vue'),
-        name: 'Login',
-    },
-    {
-        path: '/about',
-        component: () => import('../views/About.vue'),
-        name: 'About',
+        path: "/about",
+        component: () => import("../views/About.vue"),
+        name: "About",
+        meta: {
+            auth: true,
+        },
     },
     {
         // ini akan otomatis ke reedirect ke Halaman Home Apabila Halaman Tidak Ditemukan
         path: "/:catchAll(.*)*",
         redirect: {
-            name: "Home"
+            name: "Home",
         },
     },
-]
+];
 
 // export router
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
-})
+});
 router.beforeEach((to, from, next) => {
-    const loggedIn = localStorage.getItem('user')
+    const loggedIn = localStorage.getItem("user");
 
-    if (to.matched.some(record => record.meta.auth) && !loggedIn) {
-        next('/login')
-        return
+    if (to.matched.some((record) => record.meta.auth) && !loggedIn) {
+        next("/login");
+        return;
     }
-    next()
-})
+    next();
+});
 
 export default router;

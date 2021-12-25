@@ -1,7 +1,6 @@
 <template>
     <div>
-        <router-link :to="{ name: 'Home' }">Home</router-link>
-        <router-link :to="{ name: 'About' }">About</router-link>
+        <router-link v-if="isLogged" :to="{ name: 'About' }">About</router-link>
         <router-link :to="{ name: 'Login' }">Login</router-link>
         <button type="button" @click="logout()" v-if="isLogged">Logout</button>
 
