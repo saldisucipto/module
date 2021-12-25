@@ -13,6 +13,7 @@ php artisan db:seed --class=UsersTableSeeder
 ## Vuejs Libarary
 
 State Management : npm install vuex --save
+Router Management : npm install vue-router@4
 
 ## Atresna Sponsors
 
