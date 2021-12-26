@@ -13,8 +13,11 @@ php artisan db:seed --class=UsersTableSeeder
 ## Vuejs Libarary
 
 State Management : npm install vuex --save
-Router Management : npm install vue-router@4
+Router Management : npm install vue-router@4 --save
 Http Request : npm install axios --save
+Validasi Form : npm install vee-validate@next --save
+Validate Rules : npm install @vee-validate/rules
+Font Awesome : npm install @fortawesome/fontawesome-free --save-dev
 
 ## Template Dashboard
 
