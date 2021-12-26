@@ -78,7 +78,7 @@ export default {
             // used STORE State Managemnt
             try {
                 await this.$store.dispatch("login", values);
-                return this.$router.push({ name: "About" });
+                return this.$router.push({ name: "Dashboard" });
             } catch (error) {
                 this.form_diprose = true;
                 this.form_show_alert = `${error.message}`;

@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div>{{ userData["user"].name }}</div>
 </template>
 <script>
 export default {
@@ -13,6 +13,11 @@ export default {
             // set infouser ke state dengan commit
             this.$store.commit("setUserData", userData);
         }
+    },
+    data() {
+        return {
+            userData: JSON.parse(localStorage.getItem("user")),
+        };
     },
 };
 </script>
