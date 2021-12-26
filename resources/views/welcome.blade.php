@@ -22,7 +22,7 @@
 </head>
 
 
-<body class="antialiased">
+<body class="">
     <div id="app">
         {{-- stuff in here --}}
     </div>

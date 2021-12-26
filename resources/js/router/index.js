@@ -45,6 +45,9 @@ router.beforeEach((to, from, next) => {
         next("/login");
         return;
     }
+    if (to.matched.some((record) => record.meta.auth)) {
+        next("/dashboard");
+    }
     next();
 });
 
