@@ -9,6 +9,14 @@ const routes = [
         name: "Login",
     },
     {
+        path: "/dashboard",
+        component: () => import("../views/Dashboard.vue"),
+        name: "Dashboard",
+        meta: {
+            auth: true,
+        },
+    },
+    {
         path: "/about",
         component: () => import("../views/About.vue"),
         name: "About",
@@ -20,7 +28,7 @@ const routes = [
         // ini akan otomatis ke reedirect ke Halaman Home Apabila Halaman Tidak Ditemukan
         path: "/:catchAll(.*)*",
         redirect: {
-            name: "Home",
+            name: "Login",
         },
     },
 ];

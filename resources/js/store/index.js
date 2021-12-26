@@ -9,6 +9,7 @@ export default createStore({
         user: null,
     },
     mutations: {
+        // Mutations berguna untuk mengubah setiap state yang berubah
         setUserData(state, userData) {
             (state.user = userData),
                 localStorage.setItem("user", JSON.stringify(userData));
@@ -20,6 +21,7 @@ export default createStore({
         },
     },
     actions: {
+        // Melakukan Perubahan pada State
         async login({ commit }, credentials) {
             // console.log(credentials);
             return axios.post("/login", credentials).then(({ data }) => {
