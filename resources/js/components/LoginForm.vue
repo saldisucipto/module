@@ -1,6 +1,9 @@
 <template>
+    <div v-if="form_diprose" class="alert" :class="form_styling" role="alert">
+        <strong> <i class="fas fa-spinner"></i> </strong> {{ form_show_alert }}
+    </div>
     <div>
-        <form role="form">
+        <vee-form role="form" :validation-schema="loginSchema" @submit="login">
             <div class="form-group mb-3">
                 <div
                     class="
@@ -12,12 +15,14 @@
                             ><i class="ni ni-email-83"></i
                         ></span>
                     </div>
-                    <input
+                    <vee-field
+                        name="email"
                         class="form-control"
                         placeholder="Email"
                         type="email"
                     />
                 </div>
+                <ErrorMessage class="text-danger text-xs" name="email" />
             </div>
             <div class="form-group">
                 <div
@@ -30,37 +35,62 @@
                             ><i class="ni ni-lock-circle-open"></i
                         ></span>
                     </div>
-                    <input
+                    <vee-field
+                        name="password"
                         class="form-control"
                         placeholder="Password"
                         type="password"
                     />
                 </div>
+                <ErrorMessage class="text-danger text-xs" name="password" />
             </div>
-            <div
-                class="
-                    custom-control custom-control-alternative custom-checkbox
-                "
-            >
-                <input
-                    class="custom-control-input"
-                    id=" customCheckLogin"
-                    type="checkbox"
-                />
-                <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                </label>
-            </div>
+
             <div class="text-center">
-                <button type="button" class="btn btn-primary my-4">
+                <button type="submit" class="btn btn-primary my-4">
                     Sign in
                 </button>
             </div>
-        </form>
+        </vee-form>
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
     name: "LoginForm",
+    data() {
+        return {
+            form_diprose: false,
+            form_show_alert: "",
+            form_styling: "alert-primary",
+            loginSchema: {
+                email: "required|min:3|max:100|email",
+                password: "required|min:6",
+            },
+        };
+    },
+    methods: {
+        async login(values) {
+            // debug value
+            this.form_diprose = true;
+            this.form_show_alert = "Tunggu Sebentar, Login Sedang Di Proses";
+            this.form_styling = "alert-primary";
+            // console.log(values);
+            // used STORE State Managemnt
+            try {
+                await this.$store.dispatch("login", values);
+                return this.$router.push({ name: "About" });
+            } catch (error) {
+                this.form_diprose = true;
+                this.form_show_alert = `${error.message}`;
+                this.form_styling = "alert-danger";
+                return;
+            }
+        },
+    },
+    computed: {
+        ...mapState({
+            messageResponse: "responseMessage",
+        }),
+    },
 };
 </script>

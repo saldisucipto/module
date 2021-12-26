@@ -38,14 +38,14 @@ export default {
         configure({
             generateMessage: (ctx) => {
                 const messages = {
-                    required: `Field ${ctx.field} harus Di Isi! `,
+                    required: `Field ${ctx.field} harus di isi! `,
+                    min: `Field ${ctx.field} minimal 6 karakter`,
                 };
                 const message = messages[ctx.rule.name]
                     ? messages[ctx.rule.name]
-                    : `The Field ${ctx.field} is Invalid`;
+                    : `The Field ${ctx.field} is invalid`;
                 return message;
             },
-
             // Validating Triger
             validateOnBlur: true,
             validateOnChange: false,
