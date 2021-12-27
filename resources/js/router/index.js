@@ -1,9 +1,11 @@
 // Import Library
-import { createRouter, createWebHistory } from "vue-router";
+import {
+    createRouter,
+    createWebHistory
+} from "vue-router";
 
 // Router Variable
-const routes = [
-    {
+const routes = [{
         path: "/",
         component: () => import("../views/Login.vue"),
         name: "Login",
@@ -45,6 +47,8 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
+    // Identify Active Link On Pages
+    linkActiveClass: "active",
 });
 router.beforeEach((to, from, next) => {
     const loggedIn = localStorage.getItem("user");
