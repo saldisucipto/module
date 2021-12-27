@@ -5,6 +5,10 @@
 </template>
 
 <script>
+import Sidebar from "../components/Sidebar.vue";
+import Navigasi from "../components/Navigasi.vue";
+import FooterApp from "../components/Footer.vue";
+import PanelInfoLink from "../components/widgets/PanelInfoLink.vue";
 export default {
     name: "About",
     created() {

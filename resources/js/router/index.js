@@ -27,6 +27,14 @@ const routes = [{
         },
     },
     {
+        path: "/master/customers",
+        component: () => import("../views/masters/Customers.vue"),
+        name: "MasterCustomer",
+        meta: {
+            auth: true,
+        },
+    },
+    {
         path: "/about",
         component: () => import("../views/About.vue"),
         name: "About",
