@@ -37,11 +37,14 @@
                                 <span class="nav-link-text">Dashboard</span>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="examples/icons.html">
+                            <router-link class="nav-link" to="/master">
                                 <i class="ni ni-planet text-orange"></i>
-                                <span class="nav-link-text">Master Data</span>
-                            </a>
+                                <span class="nav-link-text"
+                                    >Master Data</span
+                                ></router-link
+                            >
                         </li>
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="examples/map.html">

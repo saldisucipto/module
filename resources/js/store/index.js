@@ -7,6 +7,7 @@ axios.defaults.baseURL = "http://module.test/api";
 export default createStore({
     state: {
         user: null,
+        currentsUser: [],
     },
     mutations: {
         // Mutations berguna untuk mengubah setiap state yang berubah

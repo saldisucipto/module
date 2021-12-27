@@ -17,6 +17,14 @@ const routes = [
         },
     },
     {
+        path: "/master",
+        component: () => import("../views/MasterData.vue"),
+        name: "Master",
+        meta: {
+            auth: true,
+        },
+    },
+    {
         path: "/about",
         component: () => import("../views/About.vue"),
         name: "About",
@@ -44,9 +52,6 @@ router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.auth) && !loggedIn) {
         next("/login");
         return;
-    }
-    if (to.matched.some((record) => record.meta.auth)) {
-        next("/dashboard");
     }
     next();
 });

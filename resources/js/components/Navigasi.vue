@@ -93,8 +93,8 @@
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm font-weight-bold"
-                                        >John Snow</span
-                                    >
+                                        >{{ userInfo["user"].name }}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -121,5 +121,11 @@
 <script>
 export default {
     name: "Navigasi",
+    data() {
+        return {
+            userInfo: JSON.parse(localStorage.getItem("user")),
+        };
+    },
+    methods: {},
 };
 </script>

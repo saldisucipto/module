@@ -13,59 +13,10 @@
                     <div class="header-body">
                         <!-- Card stats -->
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card card-stats">
-                                    <!-- Card body -->
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5
-                                                    class="
-                                                        card-title
-                                                        text-uppercase
-                                                        text-muted
-                                                        mb-0
-                                                    "
-                                                >
-                                                    Total traffic
-                                                </h5>
-                                                <span
-                                                    class="
-                                                        h2
-                                                        font-weight-bold
-                                                        mb-0
-                                                    "
-                                                    >350,897</span
-                                                >
-                                            </div>
-                                            <div class="col-auto">
-                                                <div
-                                                    class="
-                                                        icon icon-shape
-                                                        bg-gradient-red
-                                                        text-white
-                                                        rounded-circle
-                                                        shadow
-                                                    "
-                                                >
-                                                    <i
-                                                        class="ni ni-active-40"
-                                                    ></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-sm">
-                                            <span class="text-success mr-2"
-                                                ><i class="fa fa-arrow-up"></i>
-                                                3.48%</span
-                                            >
-                                            <span class="text-nowrap"
-                                                >Since last month</span
-                                            >
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <panel-info>
+                                <template v-slot:title> Ganti </template>
+                                <template v-slot:sum> {{ sum }} </template>
+                            </panel-info>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -571,6 +522,7 @@
 import Sidebar from "../components/Sidebar.vue";
 import Navigasi from "../components/Navigasi.vue";
 import FooterApp from "../components/Footer.vue";
+import PanelInfo from "../components/widgets/PanelInfo.vue";
 
 export default {
     name: "Dashboard",
@@ -578,6 +530,7 @@ export default {
         Sidebar,
         Navigasi,
         FooterApp,
+        PanelInfo,
     },
     created() {
         // Created LifeCycle Hook Pertama Yang Diakses ketika components di mount
@@ -589,9 +542,11 @@ export default {
             this.$store.commit("setUserData", userData);
         }
     },
+
     data() {
         return {
             userData: JSON.parse(localStorage.getItem("user")),
+            sum: 2000,
         };
     },
 };
