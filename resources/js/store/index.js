@@ -36,7 +36,7 @@ export default createStore({
                 commit("setCurentUser", data);
             });
         },
-
+        // Logout
         logout({ commit }) {
             commit("clearUserData");
         },
