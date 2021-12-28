@@ -93,7 +93,7 @@
                                 </span>
                                 <div class="media-body ml-2 d-none d-lg-block">
                                     <span class="mb-0 text-sm font-weight-bold"
-                                        >{{ userInfo["user"].name }}
+                                        >{{ currentsUser["name"] }}
                                     </span>
                                 </div>
                             </div>
@@ -119,12 +119,14 @@
     </nav>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
     name: "Navigasi",
     data() {
-        return {
-            userInfo: JSON.parse(localStorage.getItem("user")),
-        };
+        return {};
+    },
+    computed: {
+        ...mapGetters(["currentsUser"]),
     },
     methods: {},
 };

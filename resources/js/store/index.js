@@ -18,7 +18,7 @@ export default createStore({
             axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`;
         },
         setCurentUser(state, value) {
-            state.currentsUser = value;
+            state.currentsUser = value["user"];
         },
         clearUserData() {
             localStorage.removeItem("user");
@@ -31,7 +31,7 @@ export default createStore({
             // console.log(credentials);
             // commit berfungsi untuk men trigger perubahan yang dilakukan mutations
             return axios.post("/login", credentials).then(({ data }) => {
-                console.log(data);
+                // console.log(data["user"]);
                 commit("setUserData", data);
                 commit("setCurentUser", data);
             });
