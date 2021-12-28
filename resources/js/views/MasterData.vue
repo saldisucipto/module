@@ -24,7 +24,7 @@
                         <template v-slot:links>
                             <router-link
                                 class="text-bold font-weight-bold"
-                                to="/master/customers"
+                                :to="{ name: 'Customer' }"
                             >
                                 MANAGES
                             </router-link>

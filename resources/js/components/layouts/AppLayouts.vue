@@ -25,8 +25,6 @@
                     <div class="row">
                         <h1>Content</h1>
                     </div>
-                    <!-- Footer -->
-                    <footer-app />
                 </div>
             </slot>
         </div>
@@ -36,13 +34,12 @@
 <script>
 import Sidebar from "../Sidebar.vue";
 import Navigasi from "../Navigasi.vue";
-import FooterApp from "../Footer.vue";
+
 export default {
     name: "AppsLayout",
     components: {
         Sidebar,
         Navigasi,
-        FooterApp,
     },
     created() {
         // Created LifeCycle Hook Pertama Yang Diakses ketika components di mount

@@ -38,7 +38,10 @@
                         </li>
 
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/master">
+                            <router-link
+                                class="nav-link"
+                                :to="{ name: 'Master' }"
+                            >
                                 <i class="ni ni-planet text-orange"></i>
                                 <span class="nav-link-text"
                                     >Master Data</span

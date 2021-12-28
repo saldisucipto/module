@@ -1,11 +1,11 @@
 // Import Library
-import {
-    createRouter,
-    createWebHistory
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+
+const UserProfile = { template: "<div>Profile</div>" };
 
 // Router Variable
-const routes = [{
+const routes = [
+    {
         path: "/",
         component: () => import("../views/Login.vue"),
         name: "Login",
@@ -27,26 +27,20 @@ const routes = [{
         },
     },
     {
-        path: "/master/customers",
+        path: "/master/customer",
         component: () => import("../views/masters/Customers.vue"),
-        name: "MasterCustomer",
+        // component: UserProfile,
+        name: "Customer",
         meta: {
             auth: true,
         },
     },
-    {
-        path: "/about",
-        component: () => import("../views/About.vue"),
-        name: "About",
-        meta: {
-            auth: true,
-        },
-    },
+
     {
         // ini akan otomatis ke reedirect ke Halaman Home Apabila Halaman Tidak Ditemukan
         path: "/:catchAll(.*)*",
         redirect: {
-            name: "Login",
+            name: "Dashboard",
         },
     },
 ];
