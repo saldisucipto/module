@@ -15,6 +15,8 @@ import {
     max_value as maxVal,
     confirmed,
     not_one_of as excluded,
+    regex,
+    digits,
 } from "@vee-validate/rules";
 
 export default {
@@ -33,17 +35,20 @@ export default {
         defineRule("maxVal", maxVal);
         defineRule("confirmed", confirmed);
         defineRule("excluded", excluded);
+        defineRule("regex", regex);
+        defineRule("digits", digits);
 
         // Custom Message
         configure({
             generateMessage: (ctx) => {
                 const messages = {
-                    required: `Field ${ctx.field} harus di isi! `,
-                    min: `Field ${ctx.field} minimal 6 karakter`,
+                    required: `Field harus di isi! `,
+                    min: `Field minimal 6 karakter`,
+                    regex: `Karakter Tidak Diperbolehkan`,
                 };
                 const message = messages[ctx.rule.name]
                     ? messages[ctx.rule.name]
-                    : `The Field ${ctx.field} is invalid`;
+                    : `Field Harus Di Isi Dengan Benar`;
                 return message;
             },
             // Validating Triger

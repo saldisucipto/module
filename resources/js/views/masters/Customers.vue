@@ -1193,6 +1193,7 @@
     </div>
     <div
         class="modal fade"
+        :class="modal"
         id="modal-create-customer"
         tabindex="-1"
         role="dialog"
@@ -1230,18 +1231,26 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="">
+                    <vee-form
+                        :validation-schema="customerSchema"
+                        ref="anyName"
+                        @submit="createForm"
+                    >
                         <div class="form-group">
                             <label
                                 for="customer_name"
                                 class="form-control-label"
                                 >Customer Name</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="PT.Maju Mundur Sentosa"
                                 id="customer_name"
+                                name="customer_name"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_name"
                             />
                         </div>
@@ -1251,13 +1260,18 @@
                                 class="form-control-label"
                                 >Customer Adress</label
                             >
-                            <textarea
+                            <vee-field
+                                as="textarea"
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="Jl. Jakarta Timur, DKI JAKARTA"
                                 id="customer_address"
                                 name="customer_address"
                                 rows="5"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="customer_address"
                             />
                         </div>
                         <div class="form-group">
@@ -1266,13 +1280,17 @@
                                 class="form-control-label"
                                 >Customer Country</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="Indonesia"
                                 id="customer_country"
                                 name="customer_country"
                                 rows="5"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="customer_country"
                             />
                         </div>
                         <div class="form-group">
@@ -1281,12 +1299,16 @@
                                 class="form-control-label"
                                 >Customer Phone</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="021 xxxx xxxx"
                                 maxlength="13"
                                 id="customer_phone"
+                                name="customer_phone"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_phone"
                             />
                         </div>
@@ -1296,12 +1318,16 @@
                                 class="form-control-label"
                                 >Customer Phone +</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="021 xxxx xxxx (Optional)"
                                 maxlength="13"
                                 id="customer_phone_1"
+                                name="customer_phone_1"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_phone_1"
                             />
                         </div>
@@ -1311,12 +1337,17 @@
                                 class="form-control-label"
                                 >Customer Faxmile</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="021 xxxx xxxx (Customer Fax Number)"
                                 maxlength="13"
                                 id="customer_faxmile"
+                                name="customer_faxmile"
+                            />
+
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_faxmile"
                             />
                         </div>
@@ -1326,12 +1357,16 @@
                                 class="form-control-label"
                                 >Customer Email</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="email"
                                 placeholder="email@email.com"
-                                maxlength="13"
                                 id="customer_email"
+                                name="customer_email"
+                            />
+
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_email"
                             />
                         </div>
@@ -1349,17 +1384,26 @@
                                 id="customer_tax_number"
                                 name="customer_tax_number"
                             />
+
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="customer_tax_number"
+                            />
                         </div>
                         <div class="form-group">
                             <label for="customer_pic" class="form-control-label"
                                 >Customer Contact Person / Person Incase</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="Sdri. Bunga Anggita"
                                 maxlength="15"
                                 id="customer_pic"
+                                name="customer_pic"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
                                 name="customer_pic"
                             />
                         </div>
@@ -1369,7 +1413,7 @@
                                 class="form-control-label"
                                 >Contact Person Phone</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="021 xxxx xxxx (Optional)"
@@ -1377,11 +1421,15 @@
                                 id="customer_pic_phone"
                                 name="customer_pic_phone"
                             />
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="customer_pic_phone"
+                            />
                         </div>
                         <button type="submit" class="btn btn-primary">
                             Save changes
                         </button>
-                    </form>
+                    </vee-form>
                 </div>
             </div>
         </div>
@@ -1407,12 +1455,30 @@ export default {
             this.$store.commit("setUserData", userData);
         }
     },
-
     data() {
         return {
             userData: JSON.parse(localStorage.getItem("user")),
             sum: 0,
+            modal: "",
+            customerSchema: {
+                customer_name: "required",
+                customer_address: "required|min:10",
+                customer_country: "required",
+                customer_phone: "required",
+                customer_phone_1: "",
+                customer_faxmile: "",
+                customer_tax_number: "",
+                customer_pic: "required",
+                customer_pic_phone: "required",
+            },
         };
+    },
+    methods: {
+        async createForm(values) {
+            this.modal = "fade";
+            console.log(values);
+            // resetForm();
+        },
     },
 };
 </script>
