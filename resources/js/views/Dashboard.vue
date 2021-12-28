@@ -1,12 +1,6 @@
 <template>
-    <div>
-        <!-- Sidenav -->
-        <sidebar />
-        <!-- Main content -->
-        <div class="main-content" id="panel">
-            <!-- Topnav -->
-            <navigasi />
-            <!-- Header -->
+    <app-layouts>
+        <template v-slot:header_content>
             <!-- Header -->
             <div class="header bg-primary pb-6 py-4">
                 <div class="container-fluid">
@@ -186,6 +180,8 @@
                     </div>
                 </div>
             </div>
+        </template>
+        <template v-slot:main_content_page>
             <!-- Page content -->
             <div class="container-fluid mt--6">
                 <div class="row">
@@ -515,37 +511,21 @@
                 <!-- Footer -->
                 <footer-app />
             </div>
-        </div>
-    </div>
+        </template>
+    </app-layouts>
 </template>
 <script>
-import Sidebar from "../components/Sidebar.vue";
-import Navigasi from "../components/Navigasi.vue";
-import FooterApp from "../components/Footer.vue";
+import AppLayouts from "../components/layouts/AppLayouts.vue";
 import PanelInfo from "../components/widgets/PanelInfo.vue";
 
 export default {
     name: "Dashboard",
     components: {
-        Sidebar,
-        Navigasi,
-        FooterApp,
         PanelInfo,
+        AppLayouts,
     },
-    created() {
-        // Created LifeCycle Hook Pertama Yang Diakses ketika components di mount
-        // get user login info
-        const userInfoData = localStorage.getItem("user");
-        if (userInfoData) {
-            const userData = JSON.parse(userInfoData);
-            // set infouser ke state dengan commit
-            this.$store.commit("setUserData", userData);
-        }
-    },
-
     data() {
         return {
-            userData: JSON.parse(localStorage.getItem("user")),
             sum: 2000,
         };
     },

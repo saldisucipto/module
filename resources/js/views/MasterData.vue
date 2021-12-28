@@ -1,22 +1,16 @@
 <template>
-    <div>
-        <!-- Sidenav -->
-        <sidebar />
-        <!-- Main content -->
-        <div class="main-content" id="panel">
-            <!-- Topnav -->
-            <navigasi />
-            <!-- Header -->
-            <!-- Header -->
+    <app-layouts>
+        <template v-slot:header_content>
             <div class="header bg-primary pb-6 py-4">
                 <div class="container-fluid">
                     <div class="header-body">
                         <!-- Card stats -->
+                        <h1 class="text-white py-3">Master Data</h1>
                     </div>
                 </div>
             </div>
-            <!-- Page content -->
-            <!-- Page content -->
+        </template>
+        <template v-slot:main_content_page>
             <div class="container-fluid mt--6">
                 <div class="row">
                     <panel-info-link>
@@ -39,36 +33,21 @@
                 </div>
                 <!-- Dark table -->
             </div>
-        </div>
-    </div>
+        </template>
+    </app-layouts>
 </template>
 <script>
-import Sidebar from "../components/Sidebar.vue";
-import Navigasi from "../components/Navigasi.vue";
-import FooterApp from "../components/Footer.vue";
 import PanelInfoLink from "../components/widgets/PanelInfoLink.vue";
+import AppLayouts from "../components/layouts/AppLayouts.vue";
+
 export default {
     name: "MasterData",
     components: {
-        Sidebar,
-        Navigasi,
-        FooterApp,
         PanelInfoLink,
+        AppLayouts,
     },
-    created() {
-        // Created LifeCycle Hook Pertama Yang Diakses ketika components di mount
-        // get user login info
-        const userInfoData = localStorage.getItem("user");
-        if (userInfoData) {
-            const userData = JSON.parse(userInfoData);
-            // set infouser ke state dengan commit
-            this.$store.commit("setUserData", userData);
-        }
-    },
-
     data() {
         return {
-            userData: JSON.parse(localStorage.getItem("user")),
             sum: 0,
         };
     },
