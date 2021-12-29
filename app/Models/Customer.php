@@ -11,4 +11,5 @@ class Customer extends Model
     protected $table = 'customers';
     protected $primaryKey = 'code';
     public $incrementing = false;
+    protected $guarded = [];
 }

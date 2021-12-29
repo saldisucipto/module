@@ -1478,6 +1478,26 @@ export default {
     },
     methods: {
         async createForm(values, { resetForm }) {
+            await axios
+                .post("http://module.test/api/create-customers", {
+                    customer_name: values.customer_name,
+                    customer_address: values.customer_address,
+                    customer_country: values.customer_country,
+                    customer_phone: values.customer_phone,
+                    customer_phone_1: values.customer_phone_1,
+                    customer_faxmile: values.customer_faxmile,
+                    customer_email: values.customer_email,
+                    customer_tax_number: values.customer_tax_number,
+                    customer_pic: values.customer_pic,
+                    customer_pic_phone: values.customer_pic_phone,
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
             this.modal = "fade";
             resetForm();
             console.log(values);

@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Hash;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/create-customers', 'API\CustomerController@store');
+Route::get('/info', 'API\CustomerController@info');
 
 
 Route::post('/login', function (Request $request) {
@@ -33,7 +35,6 @@ Route::post('/login', function (Request $request) {
             'message' => ['These credentials do not match our records.']
         ], 404);
     }
-
     $token = $user->createToken('my-app-token')->plainTextToken;
 
     $response = [

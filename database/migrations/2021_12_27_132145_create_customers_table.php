@@ -14,7 +14,7 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->string('code', 12)->primary();
+            $table->string('code', 15)->primary();
             $table->string('customer_name', 50);
             $table->text('customer_address');
             $table->string('customer_country');
