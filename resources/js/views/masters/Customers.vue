@@ -1192,7 +1192,7 @@
         </div>
     </div>
     <div
-        class="modal fade"
+        class="modal"
         :class="modal"
         id="modal-create-customer"
         tabindex="-1"
@@ -1232,6 +1232,7 @@
 
                 <div class="modal-body">
                     <vee-form
+                        role="form"
                         :validation-schema="customerSchema"
                         ref="anyName"
                         @submit="createForm"
@@ -1288,6 +1289,7 @@
                                 name="customer_country"
                                 rows="5"
                             />
+
                             <ErrorMessage
                                 class="text-danger text-xs"
                                 name="customer_country"
@@ -1392,7 +1394,8 @@
                         </div>
                         <div class="form-group">
                             <label for="customer_pic" class="form-control-label"
-                                >Customer Contact Person / Person Incase</label
+                                >Customer Contact Person / Person In
+                                Charge</label
                             >
                             <vee-field
                                 class="form-control form-control-sm"
@@ -1474,10 +1477,10 @@ export default {
         };
     },
     methods: {
-        async createForm(values) {
+        async createForm(values, { resetForm }) {
             this.modal = "fade";
+            resetForm();
             console.log(values);
-            // resetForm();
         },
     },
 };
