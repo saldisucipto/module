@@ -20,15 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/create-customers', 'API\CustomerController@store');
-Route::get('/info', 'API\CustomerController@info');
+
 
 
 Route::post('/login', function (Request $request) {
-    $data = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required'
-    ]);
-
     $user = User::where('email', $request->email)->first();
     if (!$user || !Hash::check($request->password, $user->password)) {
         return response([
