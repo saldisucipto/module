@@ -28,6 +28,9 @@ class CustomerController extends Controller
         $customers->customer_phone = $data['customer_phone'];
         $customers->customer_phone_1 = $data['customer_phone_1'];
         $customers->customer_pic = $data['customer_pic'];
+        $customers->customer_faxmile = $data['customer_faxmile'];
+        $customers->customer_email = $data['customer_email'];
+        $customers->customer_tax_number = $data['customer_tax_number'];
         $customers->customer_pic_phone = $data['customer_pic_phone'];
         $customers->save();
         return response()->json([['message'=>'Succes Input Data'], $data], 201);

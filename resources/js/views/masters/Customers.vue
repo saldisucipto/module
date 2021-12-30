@@ -1378,7 +1378,7 @@
                                 class="form-control-label"
                                 >Customer Tax / NPWP</label
                             >
-                            <input
+                            <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
                                 placeholder="XX.XXX.XXX.X-XXX.XXX"

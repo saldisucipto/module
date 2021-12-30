@@ -11,7 +11,8 @@
          $tahunIni = date('y');
          $numeric_code = substr($data_terakhir, 10, 5);
          $incrementingCode = str_pad(++$numeric_code, 5, '0', STR_PAD_LEFT);
-         $finalAlias = substr($alias_code, 0, 3);
+         $remove_PT = str_replace('PT. ', '', $alias_code);
+         $finalAlias = substr($remove_PT, 0, 3);
          $finalCode = $alias_trsansaksi . $tahunIni . strtoupper($finalAlias) . $incrementingCode;
          return $finalCode;
      }
