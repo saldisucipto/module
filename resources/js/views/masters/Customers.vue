@@ -55,20 +55,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-fluid" v-show="alert">
-                    <div
-                        class="alert alert-secondary"
-                        :class="alert_type"
-                        role="alert"
-                    >
+                <!-- alert -->
+                <div v-if="alert_modal" class="container-fluid">
+                    <div class="alert" :class="alert_type" role="alert">
                         <strong>{{ alert_message }}</strong>
                         {{ alert_sub_message }}
                     </div>
                 </div>
+                <!-- end alert -->
             </div>
-            <!-- Page content -->
-            <!-- alert -->
-
             <!-- Page content -->
             <div class="container-fluid mt--6">
                 <div class="row justify-content-center">
@@ -1475,7 +1470,7 @@ export default {
             userData: JSON.parse(localStorage.getItem("user")),
             sum: 0,
             modal: "",
-            alert_modal: true,
+            alert_modal: false,
             alert_message: "",
             alert_type: "",
             alert_sub_message: "",
@@ -1515,13 +1510,14 @@ export default {
                     console.log(error);
                 });
             this.modal = "fade";
+
             this.alert_modal = true;
             this.alert_message = "Berhasil";
-            this.alert_sub_message = "Your Customer Data Succesfully Addes";
-            this.alert_type = "alert-secondary";
+            this.alert_sub_message = "Your Customer Data Succesfully Added";
+            this.alert_type = "alert-success";
             setTimeout(() => {
                 this.alert_modal = false;
-            }, 500);
+            }, 4000);
         },
     },
 };
