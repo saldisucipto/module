@@ -55,8 +55,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="container-fluid" v-show="alert">
+                    <div
+                        class="alert alert-secondary"
+                        :class="alert_type"
+                        role="alert"
+                    >
+                        <strong>{{ alert_message }}</strong>
+                        {{ alert_sub_message }}
+                    </div>
+                </div>
             </div>
             <!-- Page content -->
+            <!-- alert -->
+
             <!-- Page content -->
             <div class="container-fluid mt--6">
                 <div class="row justify-content-center">
@@ -141,6 +153,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- Light table -->
                             <div class="table-responsive">
                                 <table
@@ -1449,7 +1462,6 @@ export default {
         Navigasi,
     },
     created() {
-        // Created LifeCycle Hook Pertama Yang Diakses ketika components di mount
         // get user login info
         const userInfoData = localStorage.getItem("user");
         if (userInfoData) {
@@ -1463,6 +1475,10 @@ export default {
             userData: JSON.parse(localStorage.getItem("user")),
             sum: 0,
             modal: "",
+            alert_modal: true,
+            alert_message: "",
+            alert_type: "",
+            alert_sub_message: "",
             customerSchema: {
                 customer_name: "required",
                 customer_address: "required|min:10",
@@ -1477,8 +1493,8 @@ export default {
         };
     },
     methods: {
-        async createForm(values, { resetForm }) {
-            await axios
+        createForm(values, { resetForm }) {
+            axios
                 .post("http://module.test/api/create-customers", {
                     customer_name: values.customer_name,
                     customer_address: values.customer_address,
@@ -1492,15 +1508,20 @@ export default {
                     customer_pic_phone: values.customer_pic_phone,
                 })
                 .then(function (response) {
-                    console.log(response);
+                    // console.log(response);
+                    resetForm();
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
-
             this.modal = "fade";
-            resetForm();
-            console.log(values);
+            this.alert_modal = true;
+            this.alert_message = "Berhasil";
+            this.alert_sub_message = "Your Customer Data Succesfully Addes";
+            this.alert_type = "alert-secondary";
+            setTimeout(() => {
+                this.alert_modal = false;
+            }, 500);
         },
     },
 };
