@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Hash;
 
 /*
@@ -20,7 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/create-customers', 'API\CustomerController@store');
+    Route::post('/create-customers', 'API\CustomerController@store')->name('createCutomerData');
+    Route::get('/get-all-customers', 'Api\CustomerController@showAllCustomers')->name('getAllCutsomerData');
 });
 
 
