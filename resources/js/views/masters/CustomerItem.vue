@@ -195,6 +195,24 @@
                                     <strong>{{ customer_faxmile }}</strong>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Customer NPWP</th>
+                                <td class="fw-bold">
+                                    <strong>{{ customer_tax_number }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Customer PIC Name</th>
+                                <td class="fw-bold">
+                                    <strong> Sdr/i. {{ customer_pic }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Customer PIC Phone</th>
+                                <td class="fw-bold">
+                                    <strong>{{ customer_pic_phone }}</strong>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -259,6 +277,12 @@ export default {
                     (this.customer_phone_1 =
                         Response.data.customer.customer_phone_1);
                 this.customer_faxmile = Response.data.customer.customer_faxmile;
+                this.customer_tax_number =
+                    Response.data.customer.customer_tax_number;
+                this.customer_pic = Response.data.customer.customer_pic;
+                this.customer_pic_phone =
+                    Response.data.customer.customer_pic_phone;
+
                 console.log(Response.data.customer);
             });
         },
