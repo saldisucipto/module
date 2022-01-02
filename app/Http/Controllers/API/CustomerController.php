@@ -33,6 +33,14 @@ class CustomerController extends Controller
         $customers->customer_tax_number = $data['customer_tax_number'];
         $customers->customer_pic_phone = $data['customer_pic_phone'];
         $customers->save();
-        return response()->json([['message'=>'Succes Input Data'], $data], 201);
+        return response()->json([['message' => 'Succes Input Data'], $data], 201);
+    }
+
+    // Show Customer Data On Table
+    public function showAllCustomers()
+    {
+        // $customers = Customer::orderBy('created_at')->get();
+        $customers = Customer::latest()->get();
+        return response()->json(['message' => 'Succesfully Request', 'customers' => $customers], 200);
     }
 }
