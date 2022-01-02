@@ -43,4 +43,11 @@ class CustomerController extends Controller
         $customers = Customer::latest()->get();
         return response()->json(['message' => 'Succesfully Request', 'customers' => $customers], 200);
     }
+
+    // Customers Detail
+    public function customersDetail($code = null)
+    {
+        $customer = Customer::find($code);
+        return response()->json(['message' => 'Succesfully Request', 'customer' => $customer], 200);
+    }
 }
