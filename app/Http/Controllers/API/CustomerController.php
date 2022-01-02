@@ -51,7 +51,20 @@ class CustomerController extends Controller
             $customer = Customer::find($code);
             return response()->json(['message' => 'Succesfully Request', 'customer' => $customer], 200);
         } elseif ($request->isMethod('put')) {
-            return response()->json(['message' => 'PUT Method Berhasil'], 200);
+            $dataInpitan = $request->all();
+            $customerUpdate = Customer::find($code);
+            $customerUpdate->customer_name = $dataInpitan['customer_name'];
+            $customerUpdate->customer_address = $dataInpitan['customer_address'];
+            $customerUpdate->customer_country = $dataInpitan['customer_country'];
+            $customerUpdate->customer_phone = $dataInpitan['customer_phone'];
+            $customerUpdate->customer_phone_1 = $dataInpitan['customer_phone_1'];
+            $customerUpdate->customer_pic = $dataInpitan['customer_pic'];
+            $customerUpdate->customer_faxmile = $dataInpitan['customer_faxmile'];
+            $customerUpdate->customer_email = $dataInpitan['customer_email'];
+            $customerUpdate->customer_tax_number = $dataInpitan['customer_tax_number'];
+            $customerUpdate->customer_pic_phone = $dataInpitan['customer_pic_phone'];
+            $customerUpdate->update();
+            return response()->json(['message' => 'Data Berhasil Di Update', 'data' => $dataInpitan], 200);
         }
     }
 }

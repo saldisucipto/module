@@ -253,6 +253,14 @@
                             Update Customer Data
                         </h5>
                     </div>
+                    <!-- alert -->
+                    <div v-if="alert_modal" class="container-fluid">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Berhasil</strong>
+                            Data Customer Akan di update
+                        </div>
+                    </div>
+                    <!-- end alert -->
                     <div class="">
                         <table class="table table-responsive">
                             <tbody>
@@ -482,6 +490,7 @@ export default {
             customer_tax_number: "",
             customer_pic: "",
             customer_pic_phone: "",
+            alert_modal: false,
         };
     },
     methods: {
@@ -510,14 +519,14 @@ export default {
                     Response.data.customer.customer_pic_phone;
             });
         },
-        updateCustData(customer_code) {
+        async updateCustData(customer_code) {
             this.customer_code = customer_code;
             this.custData(customer_code);
         },
-        updateAction() {
+        async updateAction() {
             axios({
                 method: "put",
-                url: `http://module.test/api/customer/${codeCustomer}`,
+                url: `http://module.test/api/customer/${this.customer_code}`,
                 data: {
                     customer_name: this.customer_name,
                     customer_address: this.customer_address,
@@ -530,9 +539,13 @@ export default {
                     customer_pic: this.customer_pic,
                     customer_pic_phone: this.customer_pic_phone,
                 },
-            }).then((response) => {
-                console.log(response);
+            }).then(() => {
+                this.reload();
             });
+        },
+        async reload() {
+            // this.$forceUpdate();
+            this.$router.go(this.$router.currentRoute);
         },
     },
 };
