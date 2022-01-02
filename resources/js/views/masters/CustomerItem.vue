@@ -99,7 +99,15 @@
                                             Details
                                         </span>
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a
+                                        class="dropdown-item"
+                                        href="#"
+                                        data-toggle="modal"
+                                        data-target="#modalEdit"
+                                        @click.prevent="
+                                            updateCustData(dataCust.code)
+                                        "
+                                    >
                                         <span class="badge badge-warning">
                                             <i class="fas fa-pen"></i>
                                             Edit This Data
@@ -228,6 +236,224 @@
             </div>
         </div>
     </div>
+    <!-- Modal Edit  -->
+    <div
+        class="modal fade"
+        id="modalEdit"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalEditTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <vee-form role="form" @submit="updateAction">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditTitle">
+                            Update Customer Data
+                        </h5>
+                    </div>
+                    <div class="">
+                        <table class="table table-responsive">
+                            <tbody>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <td class="fw-bold text-uppercase">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="PT.Maju Mundur Sentosa"
+                                            id="customer_name"
+                                            name="customer_name"
+                                            v-model="customer_name"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_name"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Email</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="email"
+                                            placeholder="email@email.com"
+                                            id="customer_email"
+                                            name="customer_email"
+                                            v-model="customer_email"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_email"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <th>Customer Address</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            as="textarea"
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="Jl. Jakarta Timur, DKI JAKARTA"
+                                            id="customer_address"
+                                            name="customer_address"
+                                            rows="5"
+                                            v-model="customer_address"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_address"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Country</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="Indonesia"
+                                            id="customer_country"
+                                            name="customer_country"
+                                            rows="5"
+                                            v-model="customer_country"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_country"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer Phone</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx"
+                                            maxlength="13"
+                                            id="customer_phone"
+                                            name="customer_phone"
+                                            v-model="customer_phone"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_phone"
+                                        />
+                                        <br />
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx"
+                                            maxlength="13"
+                                            id="customer_phone_1"
+                                            name="customer_phone_1"
+                                            v-model="customer_phone_1"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_phone_1"
+                                        />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Customer Fax Number</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx (Customer Fax Number)"
+                                            maxlength="13"
+                                            id="customer_faxmile"
+                                            name="customer_faxmile"
+                                            v-model="customer_faxmile"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_faxmile"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer NPWP</th>
+                                    <td class="fw-bold">
+                                        <strong>
+                                            <vee-field
+                                                class="
+                                                    form-control form-control-sm
+                                                "
+                                                type="text"
+                                                placeholder="XX.XXX.XXX.X-XXX.XXX"
+                                                maxlength="15"
+                                                id="customer_tax_number"
+                                                name="customer_tax_number"
+                                                v-model="customer_tax_number"
+                                        /></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer PIC Name</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="Sdri. Bunga Anggita"
+                                            maxlength="15"
+                                            id="customer_pic"
+                                            name="customer_pic"
+                                            v-model="customer_pic"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_pic"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Customer PIC Phone</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx (Optional)"
+                                            maxlength="13"
+                                            id="customer_pic_phone"
+                                            name="customer_pic_phone"
+                                            v-model="customer_pic_phone"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="customer_pic_phone"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </vee-form>
+        </div>
+    </div>
+    <!-- End Modal Edit -->
 </template>
 
 <script>
@@ -282,8 +508,30 @@ export default {
                 this.customer_pic = Response.data.customer.customer_pic;
                 this.customer_pic_phone =
                     Response.data.customer.customer_pic_phone;
-
-                console.log(Response.data.customer);
+            });
+        },
+        updateCustData(customer_code) {
+            this.customer_code = customer_code;
+            this.custData(customer_code);
+        },
+        updateAction() {
+            axios({
+                method: "put",
+                url: `http://module.test/api/customer/${codeCustomer}`,
+                data: {
+                    customer_name: this.customer_name,
+                    customer_address: this.customer_address,
+                    customer_country: this.customer_country,
+                    customer_phone: this.customer_phone,
+                    customer_phone_1: this.customer_phone_1,
+                    customer_faxmile: this.customer_faxmile,
+                    customer_email: this.customer_email,
+                    customer_tax_number: this.customer_tax_number,
+                    customer_pic: this.customer_pic,
+                    customer_pic_phone: this.customer_pic_phone,
+                },
+            }).then((response) => {
+                console.log(response);
             });
         },
     },

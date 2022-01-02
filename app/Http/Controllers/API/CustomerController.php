@@ -45,9 +45,13 @@ class CustomerController extends Controller
     }
 
     // Customers Detail
-    public function customersDetail($code = null)
+    public function customersDetail(Request $request, $code = null)
     {
-        $customer = Customer::find($code);
-        return response()->json(['message' => 'Succesfully Request', 'customer' => $customer], 200);
+        if ($request->isMethod('get')) {
+            $customer = Customer::find($code);
+            return response()->json(['message' => 'Succesfully Request', 'customer' => $customer], 200);
+        } elseif ($request->isMethod('put')) {
+            return response()->json(['message' => 'PUT Method Berhasil'], 200);
+        }
     }
 }

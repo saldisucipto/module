@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/create-customers', 'API\CustomerController@store')->name('createCutomerData');
     Route::get('/get-all-customers', 'Api\CustomerController@showAllCustomers')->name('getAllCutsomerData');
-    Route::get('/customer/{code}', 'Api\CustomerController@customersDetail')->name('getCustomersData');
+    // Route::get('/customer/{code}', 'Api\CustomerController@customersDetail')->name('getCustomersData');
+    Route::match(['GET', 'PUT'], '/customer/{code}', 'Api\CustomerController@customersDetail')->name('getCustomersData');
 });
 
 

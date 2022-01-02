@@ -508,8 +508,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Footer -->
-                <footer-app />
             </div>
         </template>
     </app-layouts>
