@@ -113,7 +113,15 @@
                                             Edit This Data
                                         </span>
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a
+                                        class="dropdown-item"
+                                        href="#"
+                                        data-toggle="modal"
+                                        data-target="#modalDelete"
+                                        @click.prevent="
+                                            deleteModal(dataCust.code)
+                                        "
+                                    >
                                         <span class="badge badge-danger">
                                             <i class="fas fa-trash"></i>
                                             Delete
@@ -462,6 +470,46 @@
         </div>
     </div>
     <!-- End Modal Edit -->
+    <!-- Modal Delete -->
+    <div
+        class="modal fade"
+        id="modalDelete"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalDeleteTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <vee-form role="form" @submit="deleteCustomer">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5
+                            class="modal-title text-danger"
+                            id="modalDeleteTitle"
+                        >
+                            Delete Data ?
+                        </h5>
+                    </div>
+                    <div class="mx-auto">
+                        <h5>Delete This Data {{ this.customer_code }}</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">
+                            Yes, Delete
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </vee-form>
+        </div>
+    </div>
+    <!-- End Modal Delete -->
 </template>
 
 <script>
@@ -539,6 +587,19 @@ export default {
                     customer_pic: this.customer_pic,
                     customer_pic_phone: this.customer_pic_phone,
                 },
+            }).then(() => {
+                this.reload();
+            });
+        },
+        // delte action
+        deleteModal(code) {
+            this.customer_code = code;
+        },
+        async deleteCustomer() {
+            console.log("This Action Trigred");
+            axios({
+                method: "delete",
+                url: `http://module.test/api/customer/delete/${this.customer_code}`,
             }).then(() => {
                 this.reload();
             });

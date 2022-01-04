@@ -67,4 +67,12 @@ class CustomerController extends Controller
             return response()->json(['message' => 'Data Berhasil Di Update', 'data' => $dataInpitan], 200);
         }
     }
+
+    // Customers Delete
+    function deleteCust($code = null)
+    {
+        $customer = Customer::find($code);
+        $customer->delete();
+        return response()->json(['message' => 'Berhasil Untuk Menghapus Data', 'customer' => $customer]);
+    }
 }
