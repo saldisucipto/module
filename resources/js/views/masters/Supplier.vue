@@ -21,11 +21,7 @@
                                     class="d-none d-md-inline-block ml-md-4"
                                 >
                                     <ol
-                                        class="
-                                            breadcrumb
-                                            breadcrumb-links
-                                            breadcrumb-dark
-                                        "
+                                        class="breadcrumb breadcrumb-links breadcrumb-dark"
                                     >
                                         <li class="breadcrumb-item">
                                             <a href="#"
@@ -79,37 +75,20 @@
                                     </div>
                                     <div>
                                         <form
-                                            class="
-                                                navbar-search
-                                                navbar-search-light
-                                                form-inline
-                                                mr-sm-3
-                                            "
+                                            class="navbar-search navbar-search-light form-inline mr-sm-3"
                                             id="navbar-search-main"
                                         >
                                             <div class="form-group mb-0">
                                                 <div
-                                                    class="
-                                                        input-group
-                                                        input-group-alternative
-                                                        input-group-merge
-                                                    "
+                                                    class="input-group input-group-alternative input-group-merge"
                                                 >
                                                     <div
-                                                        class="
-                                                            input-group-prepend
-                                                        "
+                                                        class="input-group-prepend"
                                                     >
                                                         <span
-                                                            class="
-                                                                input-group-text
-                                                            "
+                                                            class="input-group-text"
                                                             ><svg
-                                                                class="
-                                                                    svg-inline--fa
-                                                                    fa-search
-                                                                    fa-w-16
-                                                                "
+                                                                class="svg-inline--fa fa-search fa-w-16"
                                                                 aria-hidden="true"
                                                                 focusable="false"
                                                                 data-prefix="fas"
@@ -149,18 +128,210 @@
                                 </div>
                             </div>
                             <!-- Light table -->
-                            <customer-item
-                                :customerData="allCutsomerDta"
-                            ></customer-item>
+                            <div class="table-responsive">
+                                <table
+                                    class="table align-items-center table-flush"
+                                >
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                class="sort"
+                                                data-sort="name"
+                                            >
+                                                ID SUPPLIER
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="sort"
+                                                data-sort="budget"
+                                            >
+                                                SUPPLIER NAME
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="sort"
+                                                data-sort="status"
+                                            >
+                                                SUPPLIER PIC NAME
+                                            </th>
+                                            <th scope="col">
+                                                SUPPLIER CONTACTS
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                class="sort"
+                                                data-sort="completion"
+                                            >
+                                                COUNTRY
+                                            </th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        <tr
+                                            v-for="dataSupp in allSupplierData"
+                                            :key="dataSupp.code"
+                                        >
+                                            <th scope="row">
+                                                {{ dataSupp.code }}
+                                            </th>
+                                            <td class="budget">
+                                                {{ dataSupp.supplier_name }}
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="badge badge-dot mr-4"
+                                                >
+                                                    <i class="bg-success"></i>
+                                                    <span class="status">{{
+                                                        dataSupp.supplier_pic
+                                                    }}</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <span
+                                                        class="badge badge-dot mr-4"
+                                                    >
+                                                        <i
+                                                            class="bg-success"
+                                                        ></i>
+                                                        <span class="status">
+                                                            Company Phone :
+                                                            {{
+                                                                dataSupp.supplier_phone
+                                                            }}</span
+                                                        >
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span
+                                                        class="badge badge-dot mr-4"
+                                                    >
+                                                        <i
+                                                            class="bg-primary"
+                                                        ></i>
+                                                        <span class="status">
+                                                            PIC Phone :
+                                                            {{
+                                                                dataSupp.supplier_pic_phone
+                                                            }}</span
+                                                        >
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span
+                                                        class="badge badge-dot mr-4"
+                                                    >
+                                                        <i
+                                                            class="bg-warning"
+                                                        ></i>
+                                                        <span class="status">
+                                                            PIC Phone :
+                                                            {{
+                                                                dataSupp.supplier_email
+                                                            }}</span
+                                                        >
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-info">
+                                                    {{
+                                                        dataSupp.supplier_country
+                                                    }}</span
+                                                >
+                                            </td>
+                                            <td class="text-right">
+                                                <div class="dropdown">
+                                                    <a
+                                                        class="btn btn-sm btn-icon-only text-light"
+                                                        href="#"
+                                                        role="button"
+                                                        data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                    >
+                                                        <i
+                                                            class="fas fa-ellipsis-v"
+                                                        ></i>
+                                                    </a>
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+                                                    >
+                                                        <a
+                                                            class="dropdown-item"
+                                                            href="#"
+                                                            @click.prevent="
+                                                                custData(
+                                                                    dataSupp.code
+                                                                )
+                                                            "
+                                                            data-toggle="modal"
+                                                            data-target="#modalDetailsupplier"
+                                                        >
+                                                            <span
+                                                                class="badge badge-info"
+                                                            >
+                                                                <i
+                                                                    class="fas fa-eye"
+                                                                ></i>
+                                                                Details
+                                                            </span>
+                                                        </a>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            href="#"
+                                                            data-toggle="modal"
+                                                            data-target="#modalEdit"
+                                                            @click.prevent="
+                                                                updateCustData(
+                                                                    dataSupp.code
+                                                                )
+                                                            "
+                                                        >
+                                                            <span
+                                                                class="badge badge-warning"
+                                                            >
+                                                                <i
+                                                                    class="fas fa-pen"
+                                                                ></i>
+                                                                Edit This Data
+                                                            </span>
+                                                        </a>
+                                                        <a
+                                                            class="dropdown-item"
+                                                            href="#"
+                                                            data-toggle="modal"
+                                                            data-target="#modalDelete"
+                                                            @click.prevent="
+                                                                deleteModal(
+                                                                    dataSupp.code
+                                                                )
+                                                            "
+                                                        >
+                                                            <span
+                                                                class="badge badge-danger"
+                                                            >
+                                                                <i
+                                                                    class="fas fa-trash"
+                                                                ></i>
+                                                                Delete
+                                                            </span></a
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <!-- Card footer -->
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
                                     <ul
-                                        class="
-                                            pagination
-                                            justify-content-end
-                                            mb-0
-                                        "
+                                        class="pagination justify-content-end mb-0"
                                     >
                                         <li class="page-item disabled">
                                             <a
@@ -226,11 +397,7 @@
                 <div class="modal-header">
                     <h6 class="modal-title" id="modal-title-default">
                         <div
-                            class="
-                                d-flex
-                                justify-content-between
-                                align-self-center
-                            "
+                            class="d-flex justify-content-between align-self-center"
                         >
                             <div class="">
                                 <i class="fas fa-dolly text-blue"></i>
@@ -442,13 +609,13 @@
 <script>
 import Sidebar from "../../components/Sidebar.vue";
 import Navigasi from "../../components/Navigasi.vue";
-import CustomerItem from "./CustomerItem.vue";
+// import supplierItem from "./CustomerItem.vue";
 export default {
-    name: "MasterCustomers",
+    name: "MasterSupplier",
     components: {
         Sidebar,
         Navigasi,
-        CustomerItem,
+        // CustomerItem,
     },
     created() {
         // get user login info
@@ -461,6 +628,10 @@ export default {
         // panggil function
         this.getAllUserData();
     },
+    mounted() {
+        // console.log("Mounted Function Called");
+        this.getAllUserData();
+    },
     data() {
         return {
             userData: JSON.parse(localStorage.getItem("user")),
@@ -471,8 +642,8 @@ export default {
             alert_message: "",
             alert_type: "",
             alert_sub_message: "",
-            allCutsomerDta: {},
-            customerSchema: {
+            allSupplierData: {},
+            supplierSchema: {
                 supplier_name: "required",
                 supplier_address: "required|min:10",
                 supplier_country: "required",
@@ -486,9 +657,11 @@ export default {
         };
     },
     methods: {
-        async createForm(values, { resetForm }) {
-            axios
-                .post("http://module.test/api/create-customers", {
+        createForm(values, { resetForm }) {
+            axios({
+                method: "post",
+                url: "http://module.test/api/supplier/",
+                data: {
                     supplier_name: values.supplier_name,
                     supplier_address: values.supplier_address,
                     supplier_country: values.supplier_country,
@@ -499,27 +672,33 @@ export default {
                     supplier_tax_number: values.supplier_tax_number,
                     supplier_pic: values.supplier_pic,
                     supplier_pic_phone: values.supplier_pic_phone,
-                })
-                .then(function (response) {
+                },
+            })
+                .then((resp) => {
+                    // console.log(resp);
                     resetForm();
-                    console.log(response);
+                    this.modal = "fade d-none";
+                    this.alert_modal = true;
+                    this.alert_message = "Berhasil";
+                    this.getAllUserData();
+                    this.alert_sub_message =
+                        "Your Customer Data Succesfully Added";
+                    this.alert_type = "alert-success";
+                    setTimeout(() => {
+                        this.alert_modal = false;
+                    }, 4000);
                 })
-                .catch(function (error) {
+                .catch((error) => {
                     console.log(error);
                 });
-            await this.reload();
-            this.modal = "fade d-none";
-            this.alert_modal = true;
-            this.alert_message = "Berhasil";
-            this.alert_sub_message = "Your Customer Data Succesfully Added";
-            this.alert_type = "alert-success";
-            setTimeout(() => {
-                this.alert_modal = false;
-            }, 4000);
         },
         getAllUserData() {
-            axios.get("/get-all-customers").then((res) => {
-                this.allCutsomerDta = res.data.customers;
+            axios({
+                method: "get",
+                url: "http://module.test/api/supplier/",
+            }).then((responData) => {
+                this.allSupplierData = responData.data.supplier;
+                // console.log(responData.data.supplier);
             });
         },
         async reload() {

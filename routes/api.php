@@ -22,9 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/create-customers', 'API\CustomerController@store')->name('createCutomerData');
     Route::get('/get-all-customers', 'Api\CustomerController@showAllCustomers')->name('getAllCutsomerData');
-    // Route::get('/customer/{code}', 'Api\CustomerController@customersDetail')->name('getCustomersData');
+    // Master Customer API EndPoint
     Route::match(['GET', 'PUT'], '/customer/{code}', 'Api\CustomerController@customersDetail')->name('getCustomersData');
     Route::delete('/customer/delete/{code}', 'API\CustomerController@deleteCust');
+    // Master Customer API EndPoint
+    Route::group(['prefix' => 'supplier'], function () {
+        Route::match(['get', 'post'], '/', 'API\SupplierController@index')->name('supplier');
+    });
 });
 
 
