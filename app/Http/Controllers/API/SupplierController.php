@@ -21,9 +21,9 @@ class SupplierController extends Controller
             $supplierNew = new Supplier();
             $id_code = new Numbering();
             if ($supplier == null) {
-                $supplierNew->code = $id_code->createNumbering('SPLR21ABC00000', 'SPLR', $data['supplier_name']);
+                $supplierNew->code = $id_code->createNumbering('SPLR21ABC00000', 'SPPLR', $data['supplier_name']);
             } else {
-                $supplierNew->code = $id_code->createNumbering($supplier['code'], 'SPLR', $data['supplier_name']);
+                $supplierNew->code = $id_code->createNumbering($supplier['code'], 'SPPLR', $data['supplier_name']);
             }
             $supplierNew->supplier_name = $data['supplier_name'];
             $supplierNew->supplier_address = $data['supplier_address'];

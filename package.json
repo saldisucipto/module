@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@vee-validate/rules": "^4.5.7",
+        "jquery": "^3.6.0",
         "vee-validate": "^4.5.7",
         "vue": "^3.2.26",
         "vue-router": "^4.0.12",

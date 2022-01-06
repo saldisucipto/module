@@ -381,7 +381,7 @@
         </div>
     </div>
     <div
-        class="modal show"
+        class="modal"
         :class="modal"
         id="modal-create-supplier"
         tabindex="-1"
@@ -609,13 +609,11 @@
 <script>
 import Sidebar from "../../components/Sidebar.vue";
 import Navigasi from "../../components/Navigasi.vue";
-// import supplierItem from "./CustomerItem.vue";
 export default {
     name: "MasterSupplier",
     components: {
         Sidebar,
         Navigasi,
-        // CustomerItem,
     },
     created() {
         // get user login info
@@ -625,8 +623,6 @@ export default {
             // set infouser ke state dengan commit
             this.$store.commit("setUserData", userData);
         }
-        // panggil function
-        this.getAllUserData();
     },
     mounted() {
         // console.log("Mounted Function Called");
@@ -677,7 +673,8 @@ export default {
                 .then((resp) => {
                     // console.log(resp);
                     resetForm();
-                    this.modal = "fade d-none";
+                    this.modal = "fade hide";
+                    // $("#modal-create-supplier").modal("hide");
                     this.alert_modal = true;
                     this.alert_message = "Berhasil";
                     this.getAllUserData();
@@ -700,10 +697,6 @@ export default {
                 this.allSupplierData = responData.data.supplier;
                 // console.log(responData.data.supplier);
             });
-        },
-        async reload() {
-            // this.$forceUpdate();
-            this.$router.go(this.$router.currentRoute);
         },
     },
 };
