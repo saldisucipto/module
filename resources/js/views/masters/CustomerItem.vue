@@ -81,11 +81,7 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div
-                                    class="
-                                        dropdown-menu
-                                        dropdown-menu-right
-                                        dropdown-menu-arrow
-                                    "
+                                    class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
                                 >
                                     <a
                                         class="dropdown-item"
@@ -177,11 +173,7 @@
                                 <td class="fw-bold">
                                     <textarea
                                         readonly
-                                        class="
-                                            form-control
-                                            bg-white
-                                            text-default
-                                        "
+                                        class="form-control bg-white text-default"
                                         name=""
                                         id=""
                                         cols="30"
@@ -270,7 +262,7 @@
                     </div>
                     <!-- end alert -->
                     <div class="">
-                        <table class="table table-responsive">
+                        <table class="table">
                             <tbody>
                                 <tr>
                                     <th>Customer Name</th>
@@ -402,9 +394,7 @@
                                     <td class="fw-bold">
                                         <strong>
                                             <vee-field
-                                                class="
-                                                    form-control form-control-sm
-                                                "
+                                                class="form-control form-control-sm"
                                                 type="text"
                                                 placeholder="XX.XXX.XXX.X-XXX.XXX"
                                                 maxlength="15"

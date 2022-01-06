@@ -70,7 +70,7 @@
                                     <div>
                                         <h3 class="mb-0">
                                             <i class="fas fa-users"></i>
-                                            Customers Data List
+                                            Supplier Data List
                                         </h3>
                                     </div>
                                     <div>
@@ -263,13 +263,13 @@
                                                         <a
                                                             class="dropdown-item"
                                                             href="#"
+                                                            data-toggle="modal"
+                                                            data-target="#modal-detail-supplier"
                                                             @click.prevent="
-                                                                custData(
+                                                                suppData(
                                                                     dataSupp.code
                                                                 )
                                                             "
-                                                            data-toggle="modal"
-                                                            data-target="#modalDetailsupplier"
                                                         >
                                                             <span
                                                                 class="badge badge-info"
@@ -286,7 +286,7 @@
                                                             data-toggle="modal"
                                                             data-target="#modalEdit"
                                                             @click.prevent="
-                                                                updateCustData(
+                                                                suppData(
                                                                     dataSupp.code
                                                                 )
                                                             "
@@ -380,6 +380,7 @@
             </div>
         </div>
     </div>
+    <!-- modal create supllier -->
     <div
         class="modal"
         :class="modal"
@@ -605,6 +606,320 @@
             </div>
         </div>
     </div>
+    <!-- end supllier modal -->
+    <!-- modal detail supplier -->
+    <div
+        class="modal fade"
+        id="modal-detail-supplier"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modal-detail-supplierTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-detail-supplierTitle">
+                        Detail Supplier Data
+                    </h5>
+                </div>
+                <div class="">
+                    <table class="table table-responsive">
+                        <tbody>
+                            <tr>
+                                <th>Supplier Code</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_code }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Name</th>
+                                <td class="fw-bold text-uppercase">
+                                    <strong>{{ supplier_name }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Email</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_email }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Address</th>
+                                <td class="fw-bold">
+                                    <textarea
+                                        readonly
+                                        class="form-control bg-white text-default"
+                                        name=""
+                                        id=""
+                                        cols="30"
+                                        rows="5"
+                                        v-model="supplier_address"
+                                    >
+                                    </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Country</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_country }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Phone</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_phone }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier Fax Number</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_faxmile }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier NPWP</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_tax_number }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier PIC Name</th>
+                                <td class="fw-bold">
+                                    <strong> Sdr/i. {{ supplier_pic }}</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Supplier PIC Phone</th>
+                                <td class="fw-bold">
+                                    <strong>{{ supplier_pic_phone }}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                    >
+                        Tutup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end MODAL detail supplier -->
+    <!-- Modal Edit Supplier -->
+    <div
+        class="modal fade"
+        id="modalEdit"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalEditTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <vee-form role="form" @submit="updateAction">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEditTitle">
+                            Update Supplier Data
+                        </h5>
+                    </div>
+                    <!-- alert -->
+                    <div v-if="alert_modal" class="container-fluid">
+                        <div class="alert alert-success" role="alert">
+                            <strong>Berhasil</strong>
+                            Data Supplier Akan di update
+                        </div>
+                    </div>
+                    <!-- end alert -->
+                    <div class="">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th>Supplier Name</th>
+                                    <td class="fw-bold text-uppercase">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="PT.Maju Mundur Sentosa"
+                                            id="supplier_name"
+                                            name="supplier_name"
+                                            v-model="supplier_name"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_name"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier Email</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="email"
+                                            placeholder="email@email.com"
+                                            id="supplier_email"
+                                            name="supplier_email"
+                                            v-model="supplier_email"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_email"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr class="w-full">
+                                    <th>Supplier Address</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            as="textarea"
+                                            class="form-control"
+                                            type="text"
+                                            placeholder="Jl. Jakarta Timur, DKI JAKARTA"
+                                            id="supplier_address"
+                                            name="supplier_address"
+                                            rows="5"
+                                            v-model="supplier_address"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_address"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier Country</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="Indonesia"
+                                            id="supplier_country"
+                                            name="supplier_country"
+                                            v-model="supplier_country"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_country"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier Phone</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx"
+                                            maxlength="13"
+                                            id="supplier_phone"
+                                            name="supplier_phone"
+                                            v-model="supplier_phone"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_phone"
+                                        />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Supplier Fax Number</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx (Supplier Fax Number)"
+                                            maxlength="13"
+                                            id="supplier_faxmile"
+                                            name="supplier_faxmile"
+                                            v-model="supplier_faxmile"
+                                        />
+
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_faxmile"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier NPWP</th>
+                                    <td class="fw-bold">
+                                        <strong>
+                                            <vee-field
+                                                class="form-control form-control-sm"
+                                                type="text"
+                                                placeholder="XX.XXX.XXX.X-XXX.XXX"
+                                                maxlength="15"
+                                                id="supplier_tax_number"
+                                                name="supplier_tax_number"
+                                                v-model="supplier_tax_number"
+                                        /></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier PIC Name</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="Sdri. Bunga Anggita"
+                                            maxlength="15"
+                                            id="supplier_pic"
+                                            name="supplier_pic"
+                                            v-model="supplier_pic"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_pic"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Supplier PIC Phone</th>
+                                    <td class="fw-bold">
+                                        <vee-field
+                                            class="form-control form-control-sm"
+                                            type="text"
+                                            placeholder="021 xxxx xxxx (Optional)"
+                                            maxlength="13"
+                                            id="supplier_pic_phone"
+                                            name="supplier_pic_phone"
+                                            v-model="supplier_pic_phone"
+                                        />
+                                        <ErrorMessage
+                                            class="text-danger text-xs"
+                                            name="supplier_pic_phone"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </vee-form>
+        </div>
+    </div>
+    <!-- End Modal Supplier Edit -->
 </template>
 <script>
 import Sidebar from "../../components/Sidebar.vue";
@@ -634,6 +949,16 @@ export default {
             sum: 0,
             modal_open: true,
             modal: "",
+            supplier_code: "",
+            supplier_name: "",
+            supplier_address: "",
+            supplier_country: "",
+            supplier_phone: "",
+            supplier_faxmile: "",
+            supplier_email: "",
+            supplier_tax_number: "",
+            supplier_pic: "",
+            supplier_pic_phone: "",
             alert_modal: false,
             alert_message: "",
             alert_type: "",
@@ -679,7 +1004,7 @@ export default {
                     this.alert_message = "Berhasil";
                     this.getAllUserData();
                     this.alert_sub_message =
-                        "Your Customer Data Succesfully Added";
+                        "Your Supplier Data Succesfully Added";
                     this.alert_type = "alert-success";
                     setTimeout(() => {
                         this.alert_modal = false;
@@ -697,6 +1022,29 @@ export default {
                 this.allSupplierData = responData.data.supplier;
                 // console.log(responData.data.supplier);
             });
+        },
+        suppData(id) {
+            // console.log(id);
+            axios({
+                method: "get",
+                url: `http://module.test/api/supplier/${id}`,
+            }).then((response) => {
+                // console.log(response.data.supplier.code);
+                this.supplier_code = response.data.supplier.code;
+                this.supplier_name = response.data.supplier.supplier_name;
+                this.supplier_address = response.data.supplier.supplier_address;
+                this.supplier_country = response.data.supplier.supplier_country;
+                this.supplier_phone = response.data.supplier.supplier_phone;
+                this.supplier_faxmile = response.data.supplier.supplier_faxmile;
+                this.supplier_email = response.data.supplier.supplier_email;
+                this.supplier_tax_number =
+                    response.data.supplier.supplier_tax_number;
+                this.supplier_pic = response.data.supplier.supplier_pic;
+                this.supplier_pic_phone = response.data.supplier.supplier_phone;
+            });
+        },
+        updateAction() {
+            console.log("update actions");
         },
     },
 };

@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     // Master Customer API EndPoint
     Route::group(['prefix' => 'supplier'], function () {
         Route::match(['get', 'post'], '/', 'API\SupplierController@index')->name('supplier');
+        Route::match(['get', 'put'], '/{code}', 'API\SupplierController@detailOrEdit')->name('supplierData');
     });
 });
 

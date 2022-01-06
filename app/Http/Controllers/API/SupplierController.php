@@ -38,4 +38,16 @@ class SupplierController extends Controller
             return response()->json(['message' => 'Create Supplier Berhasil'], 200);
         }
     }
+
+    // detailOrEdit
+    function detailOrEdit(Request $update, $code = null)
+    {
+        $data = $update->all();
+        $supplier = Supplier::find($code);
+        if ($update->isMethod('get')) {
+            return response()->json(['message' => 'done geting data', 'supplier' => $supplier]);
+        } elseif ($update->isMethod('put')) {
+            return response()->json(['message' => 'done putting data', 'supplier' => $supplier]);
+        }
+    }
 }
