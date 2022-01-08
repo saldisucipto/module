@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'supplier'], function () {
         Route::match(['get', 'post'], '/', 'API\SupplierController@index')->name('supplier');
         Route::match(['get', 'put'], '/{code}', 'API\SupplierController@detailOrEdit')->name('supplierData');
+        Route::delete('/d/{code}', 'API\SupplierController@deleteSuppl')->name('deleteSupplier');
     });
 });
 

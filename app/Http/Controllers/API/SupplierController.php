@@ -10,7 +10,7 @@ use App\Classes\Numbering;
 class SupplierController extends Controller
 {
     //index function
-    function index(Request $request)
+    public function index(Request $request)
     {
         $supplier = Supplier::get()->last();
         $allSupplier = Supplier::latest()->get();
@@ -40,7 +40,7 @@ class SupplierController extends Controller
     }
 
     // detailOrEdit
-    function detailOrEdit(Request $update, $code = null)
+    public function detailOrEdit(Request $update, $code = null)
     {
         $data = $update->all();
         $supplier = Supplier::find($code);
@@ -49,5 +49,13 @@ class SupplierController extends Controller
         } elseif ($update->isMethod('put')) {
             return response()->json(['message' => 'done putting data', 'supplier' => $supplier]);
         }
+    }
+
+    // deleteFunction
+    public function deleteSuppl($code = null)
+    {
+        $supplier = Supplier::find($code);
+        $supplier->delete();
+        return response(['message'=>"Supplier $supplier->supplier_name Berhasil dihapus"], 201);
     }
 }

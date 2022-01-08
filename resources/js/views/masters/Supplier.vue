@@ -21,7 +21,11 @@
                                     class="d-none d-md-inline-block ml-md-4"
                                 >
                                     <ol
-                                        class="breadcrumb breadcrumb-links breadcrumb-dark"
+                                        class="
+                                            breadcrumb
+                                            breadcrumb-links
+                                            breadcrumb-dark
+                                        "
                                     >
                                         <li class="breadcrumb-item">
                                             <a href="#"
@@ -75,20 +79,37 @@
                                     </div>
                                     <div>
                                         <form
-                                            class="navbar-search navbar-search-light form-inline mr-sm-3"
+                                            class="
+                                                navbar-search
+                                                navbar-search-light
+                                                form-inline
+                                                mr-sm-3
+                                            "
                                             id="navbar-search-main"
                                         >
                                             <div class="form-group mb-0">
                                                 <div
-                                                    class="input-group input-group-alternative input-group-merge"
+                                                    class="
+                                                        input-group
+                                                        input-group-alternative
+                                                        input-group-merge
+                                                    "
                                                 >
                                                     <div
-                                                        class="input-group-prepend"
+                                                        class="
+                                                            input-group-prepend
+                                                        "
                                                     >
                                                         <span
-                                                            class="input-group-text"
+                                                            class="
+                                                                input-group-text
+                                                            "
                                                             ><svg
-                                                                class="svg-inline--fa fa-search fa-w-16"
+                                                                class="
+                                                                    svg-inline--fa
+                                                                    fa-search
+                                                                    fa-w-16
+                                                                "
                                                                 aria-hidden="true"
                                                                 focusable="false"
                                                                 data-prefix="fas"
@@ -192,7 +213,10 @@
                                             <td>
                                                 <div>
                                                     <span
-                                                        class="badge badge-dot mr-4"
+                                                        class="
+                                                            badge badge-dot
+                                                            mr-4
+                                                        "
                                                     >
                                                         <i
                                                             class="bg-success"
@@ -207,7 +231,10 @@
                                                 </div>
                                                 <div>
                                                     <span
-                                                        class="badge badge-dot mr-4"
+                                                        class="
+                                                            badge badge-dot
+                                                            mr-4
+                                                        "
                                                     >
                                                         <i
                                                             class="bg-primary"
@@ -222,7 +249,10 @@
                                                 </div>
                                                 <div>
                                                     <span
-                                                        class="badge badge-dot mr-4"
+                                                        class="
+                                                            badge badge-dot
+                                                            mr-4
+                                                        "
                                                     >
                                                         <i
                                                             class="bg-warning"
@@ -246,7 +276,12 @@
                                             <td class="text-right">
                                                 <div class="dropdown">
                                                     <a
-                                                        class="btn btn-sm btn-icon-only text-light"
+                                                        class="
+                                                            btn
+                                                            btn-sm
+                                                            btn-icon-only
+                                                            text-light
+                                                        "
                                                         href="#"
                                                         role="button"
                                                         data-toggle="dropdown"
@@ -254,14 +289,23 @@
                                                         aria-expanded="false"
                                                     >
                                                         <i
-                                                            class="fas fa-ellipsis-v"
+                                                            class="
+                                                                fas
+                                                                fa-ellipsis-v
+                                                            "
                                                         ></i>
                                                     </a>
                                                     <div
-                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-arrow"
+                                                        class="
+                                                            dropdown-menu
+                                                            dropdown-menu-right
+                                                            dropdown-menu-arrow
+                                                        "
                                                     >
                                                         <a
-                                                            class="dropdown-item"
+                                                            class="
+                                                                dropdown-item
+                                                            "
                                                             href="#"
                                                             data-toggle="modal"
                                                             data-target="#modal-detail-supplier"
@@ -272,16 +316,24 @@
                                                             "
                                                         >
                                                             <span
-                                                                class="badge badge-info"
+                                                                class="
+                                                                    badge
+                                                                    badge-info
+                                                                "
                                                             >
                                                                 <i
-                                                                    class="fas fa-eye"
+                                                                    class="
+                                                                        fas
+                                                                        fa-eye
+                                                                    "
                                                                 ></i>
                                                                 Details
                                                             </span>
                                                         </a>
                                                         <a
-                                                            class="dropdown-item"
+                                                            class="
+                                                                dropdown-item
+                                                            "
                                                             href="#"
                                                             data-toggle="modal"
                                                             data-target="#modalEdit"
@@ -292,16 +344,24 @@
                                                             "
                                                         >
                                                             <span
-                                                                class="badge badge-warning"
+                                                                class="
+                                                                    badge
+                                                                    badge-warning
+                                                                "
                                                             >
                                                                 <i
-                                                                    class="fas fa-pen"
+                                                                    class="
+                                                                        fas
+                                                                        fa-pen
+                                                                    "
                                                                 ></i>
                                                                 Edit This Data
                                                             </span>
                                                         </a>
                                                         <a
-                                                            class="dropdown-item"
+                                                            class="
+                                                                dropdown-item
+                                                            "
                                                             href="#"
                                                             data-toggle="modal"
                                                             data-target="#modalDelete"
@@ -312,10 +372,16 @@
                                                             "
                                                         >
                                                             <span
-                                                                class="badge badge-danger"
+                                                                class="
+                                                                    badge
+                                                                    badge-danger
+                                                                "
                                                             >
                                                                 <i
-                                                                    class="fas fa-trash"
+                                                                    class="
+                                                                        fas
+                                                                        fa-trash
+                                                                    "
                                                                 ></i>
                                                                 Delete
                                                             </span></a
@@ -331,7 +397,11 @@
                             <div class="card-footer py-4">
                                 <nav aria-label="...">
                                     <ul
-                                        class="pagination justify-content-end mb-0"
+                                        class="
+                                            pagination
+                                            justify-content-end
+                                            mb-0
+                                        "
                                     >
                                         <li class="page-item disabled">
                                             <a
@@ -398,7 +468,11 @@
                 <div class="modal-header">
                     <h6 class="modal-title" id="modal-title-default">
                         <div
-                            class="d-flex justify-content-between align-self-center"
+                            class="
+                                d-flex
+                                justify-content-between
+                                align-self-center
+                            "
                         >
                             <div class="">
                                 <i class="fas fa-dolly text-blue"></i>
@@ -649,7 +723,11 @@
                                 <td class="fw-bold">
                                     <textarea
                                         readonly
-                                        class="form-control bg-white text-default"
+                                        class="
+                                            form-control
+                                            bg-white
+                                            text-default
+                                        "
                                         name=""
                                         id=""
                                         cols="30"
@@ -854,7 +932,9 @@
                                     <td class="fw-bold">
                                         <strong>
                                             <vee-field
-                                                class="form-control form-control-sm"
+                                                class="
+                                                    form-control form-control-sm
+                                                "
                                                 type="text"
                                                 placeholder="XX.XXX.XXX.X-XXX.XXX"
                                                 maxlength="15"
@@ -920,6 +1000,47 @@
         </div>
     </div>
     <!-- End Modal Supplier Edit -->
+    <!-- Modal Delete -->
+    <div
+        class="modal fade"
+        :class="modal"
+        id="modalDelete"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="modalDeleteTitle"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog" role="document">
+            <vee-form role="form" @submit="deleteSupplier">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5
+                            class="modal-title text-danger"
+                            id="modalDeleteTitle"
+                        >
+                            Are You Sure To Delete Data ?
+                        </h5>
+                    </div>
+                    <div class="mx-auto">
+                        <h5>Delete This Data {{ this.supplier_code }}</h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">
+                            Yes, Delete
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-dismiss="modal"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </vee-form>
+        </div>
+    </div>
+    <!-- End Modal Delete -->
 </template>
 <script>
 import Sidebar from "../../components/Sidebar.vue";
@@ -1020,7 +1141,6 @@ export default {
                 url: "http://module.test/api/supplier/",
             }).then((responData) => {
                 this.allSupplierData = responData.data.supplier;
-                // console.log(responData.data.supplier);
             });
         },
         suppData(id) {
@@ -1045,6 +1165,26 @@ export default {
         },
         updateAction() {
             console.log("update actions");
+        },
+        deleteModal(code) {
+            this.supplier_code = code;
+        },
+        deleteSupplier() {
+            axios({
+                method: "delete",
+                url: `http://module.test/api/supplier/d/${this.supplier_code}`,
+            }).then((res) => {
+                // console.log(res.data.message);
+                this.modal = "fade hide";
+                this.alert_modal = true;
+                this.getAllUserData();
+                this.alert_message = "Berhasil Hapus Data,";
+                this.alert_sub_message = res.data.message;
+                this.alert_type = "alert-danger";
+                setTimeout(() => {
+                    this.alert_modal = false;
+                }, 4500); // 4.5 Detik
+            });
         },
     },
 };
