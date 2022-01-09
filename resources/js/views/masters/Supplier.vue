@@ -792,6 +792,7 @@
     <!-- Modal Edit Supplier -->
     <div
         class="modal fade"
+        :class="modal"
         id="modalEdit"
         tabindex="-1"
         role="dialog"
@@ -806,14 +807,6 @@
                             Update Supplier Data
                         </h5>
                     </div>
-                    <!-- alert -->
-                    <div v-if="alert_modal" class="container-fluid">
-                        <div class="alert alert-success" role="alert">
-                            <strong>Berhasil</strong>
-                            Data Supplier Akan di update
-                        </div>
-                    </div>
-                    <!-- end alert -->
                     <div class="">
                         <table class="table">
                             <tbody>
@@ -1144,12 +1137,10 @@ export default {
             });
         },
         suppData(id) {
-            // console.log(id);
             axios({
                 method: "get",
                 url: `http://module.test/api/supplier/${id}`,
             }).then((response) => {
-                // console.log(response.data.supplier.code);
                 this.supplier_code = response.data.supplier.code;
                 this.supplier_name = response.data.supplier.supplier_name;
                 this.supplier_address = response.data.supplier.supplier_address;
@@ -1164,7 +1155,33 @@ export default {
             });
         },
         updateAction() {
-            console.log("update actions");
+            axios({
+                method: "put",
+                url: `http://module.test/api/supplier/${this.supplier_code}`,
+                data: {
+                    supplier_code: this.code,
+                    supplier_name: this.supplier_name,
+                    supplier_address: this.supplier_address,
+                    supplier_country: this.supplier_country,
+                    supplier_phone: this.supplier_phone,
+                    supplier_faxmile: this.supplier_faxmile,
+                    supplier_email: this.supplier_email,
+                    supplier_tax_number: this.supplier_tax_number,
+                    supplier_pic: this.supplier_pic,
+                    supplier_pic_phone: this.supplier_phone,
+                },
+            }).then((res) => {
+                // console.log(res);
+                this.modal = "fade hide";
+                this.alert_modal = true;
+                this.getAllUserData();
+                this.alert_message = "Berhasil Update Data,";
+                this.alert_sub_message = res.data.message;
+                this.alert_type = "alert-success";
+                setTimeout(() => {
+                    this.alert_modal = false;
+                }, 4500); // 4.5 Detik
+            });
         },
         deleteModal(code) {
             this.supplier_code = code;

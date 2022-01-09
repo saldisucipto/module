@@ -47,7 +47,17 @@ class SupplierController extends Controller
         if ($update->isMethod('get')) {
             return response()->json(['message' => 'done geting data', 'supplier' => $supplier]);
         } elseif ($update->isMethod('put')) {
-            return response()->json(['message' => 'done putting data', 'supplier' => $supplier]);
+            $supplier->supplier_name = $data['supplier_name'];
+            $supplier->supplier_address = $data['supplier_address'];
+            $supplier->supplier_country = $data['supplier_country'];
+            $supplier->supplier_phone = $data['supplier_phone'];
+            $supplier->supplier_pic = $data['supplier_pic'];
+            $supplier->supplier_faxmile = $data['supplier_faxmile'];
+            $supplier->supplier_email = $data['supplier_email'];
+            $supplier->supplier_tax_number = $data['supplier_tax_number'];
+            $supplier->supplier_pic_phone = $data['supplier_pic_phone'];
+            $supplier->update();
+            return response()->json(['message' => "Berhasil Memperbaharui Data $supplier->supplier_name "], 200);
         }
     }
 
