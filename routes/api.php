@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::match(['get', 'put'], '/{code}', 'API\SupplierController@detailOrEdit')->name('supplierData');
         Route::delete('/d/{code}', 'API\SupplierController@deleteSuppl')->name('deleteSupplier');
     });
+    // Master Inventory API EndPoint
+    Route::group(['prefix' => 'inventory'], function () {
+        Route::match(['get', 'post'], '/', 'API\InventoryController@index')->name('inventory');
+    });
 });
 
 
