@@ -1,5 +1,7 @@
 // Import Lib Vuex
-import { createStore } from "vuex";
+import {
+    createStore
+} from "vuex";
 
 import axios from "axios";
 
@@ -14,7 +16,7 @@ export default createStore({
         // Mutations untuk melakukan dan merubah data pada state yang ada
         setUserData(state, userData) {
             (state.user = userData),
-                localStorage.setItem("user", JSON.stringify(userData));
+            localStorage.setItem("user", JSON.stringify(userData));
             axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`;
         },
         setCurentUser(state, value) {
@@ -27,17 +29,23 @@ export default createStore({
     },
     actions: {
         // Melakukan Perubahan pada State atau Logic
-        async login({ commit }, credentials) {
+        async login({
+            commit
+        }, credentials) {
             // console.log(credentials);
             // commit berfungsi untuk men trigger perubahan yang dilakukan mutations
-            return axios.post("/login", credentials).then(({ data }) => {
+            return axios.post("/login", credentials).then(({
+                data
+            }) => {
                 // console.log(data["user"]);
                 commit("setUserData", data);
                 commit("setCurentUser", data);
-            });
+            })
         },
         // Logout
-        logout({ commit }) {
+        logout({
+            commit
+        }) {
             commit("clearUserData");
         },
     },

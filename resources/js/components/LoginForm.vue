@@ -6,9 +6,7 @@
         <vee-form role="form" :validation-schema="loginSchema" @submit="login">
             <div class="form-group mb-3">
                 <div
-                    class="
-                        input-group input-group-merge input-group-alternative
-                    "
+                    class="input-group input-group-merge input-group-alternative"
                 >
                     <div class="input-group-prepend">
                         <span class="input-group-text"
@@ -26,9 +24,7 @@
             </div>
             <div class="form-group">
                 <div
-                    class="
-                        input-group input-group-merge input-group-alternative
-                    "
+                    class="input-group input-group-merge input-group-alternative"
                 >
                     <div class="input-group-prepend">
                         <span class="input-group-text"
@@ -81,7 +77,8 @@ export default {
                 return this.$router.push({ name: "Dashboard" });
             } catch (error) {
                 this.form_diprose = true;
-                this.form_show_alert = `${error.message}`;
+                this.form_show_alert = `Password Dan Email Anda Tidak Sesuai`;
+                // console.log(error);
                 this.form_styling = "alert-danger";
                 return;
             }

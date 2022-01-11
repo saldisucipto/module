@@ -48,6 +48,15 @@ const routes = [{
             auth: true,
         },
     },
+    {
+        path: "/master/inventory",
+        component: () => import("../views/masters/Inventory.vue"),
+        // component: UserProfile,
+        name: "Inventory",
+        meta: {
+            auth: true,
+        },
+    },
 
     {
         // ini akan otomatis ke reedirect ke Halaman Home Apabila Halaman Tidak Ditemukan

@@ -14,6 +14,23 @@
             <div class="container-fluid mt--6">
                 <div class="row">
                     <panel-info-link>
+                        <template v-slot:title> Inventory </template>
+                        <template v-slot:sum> {{ sum }} </template>
+                        <template v-slot:presentase> </template>
+                        <template v-slot:monthStatus> </template>
+                        <template v-slot:icons>
+                            <i class="fas fa-box"></i>
+                        </template>
+                        <template v-slot:links>
+                            <router-link
+                                class="text-bold font-weight-bold"
+                                :to="{ name: 'Inventory' }"
+                            >
+                                MANAGES
+                            </router-link>
+                        </template>
+                    </panel-info-link>
+                    <panel-info-link>
                         <template v-slot:title> Customers </template>
                         <template v-slot:sum> {{ sum }} </template>
                         <template v-slot:presentase> </template>
