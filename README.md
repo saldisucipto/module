@@ -9,6 +9,7 @@ Authentications : composer require laravel/sanctum
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 Seeder User Table : php artisan make:seeder UsersTableSeeder
 php artisan db:seed --class=UsersTableSeeder
+php qrbarcode generator : composer require simplesoftwareio/simple-qrcode
 
 ## Vuejs Libarary
 

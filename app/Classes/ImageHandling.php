@@ -2,7 +2,7 @@
 
 namespace App\Classes;
 
-class ImageFiles
+class ImageHandling
 {
     // class image Files
 
@@ -12,9 +12,9 @@ class ImageFiles
         // Uploaded images and Rename Original Name Off Images
         $rename_image = preg_replace('/\s+/', '', $image->getClientOriginalName());
         // Pindahkan Image Ke Directory
-        $folder_image = $directory.'/';
+        $folder_image = $directory . '/';
         // Membuat Nama Image Baru
-        $name_image = $image_name.'-'.time().'-'.$rename_image;
+        $name_image = $image_name . '-' . time() . '-' . $rename_image;
         // Finall Files Images
         $image->move($folder_image, $name_image);
         return $name_image;
@@ -24,7 +24,7 @@ class ImageFiles
     public function update(String $old_image, String $path)
     {
         // image path folde ron the server
-        $image_path = public_path($path . '\\'). $old_image;
+        $image_path = public_path($path . '\\') . $old_image;
         // menghapus email di local memory
         if (file_exists($image_path)) {
             @unlink($image_path);
