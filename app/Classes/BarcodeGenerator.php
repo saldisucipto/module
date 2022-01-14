@@ -10,7 +10,7 @@ class BarcodeGenerator
     {
         $qrname = $qrCodeName .'-'.time().'.png';
         QrCode::size(500)->format('png')
-            ->generate($qrCodeValue, public_path($qrCodePath . '/' .$qrname));
+            ->generate($qrCodeValue, public_path($qrCodePath.'/' .'qrcode' . '/' .$qrname));
         return $qrCodeName;
     }
 }
