@@ -69,8 +69,8 @@
                                 <div class="d-flex justify-content-between">
                                     <div>
                                         <h3 class="mb-0">
-                                            <i class="fas fa-users"></i>
-                                            Supplier Data List
+                                            <i class="fas fa-box"></i>
+                                            Inventory / Items Data List
                                         </h3>
                                     </div>
                                     <div>
@@ -139,45 +139,54 @@
                                                 class="sort"
                                                 data-sort="name"
                                             >
-                                                ID SUPPLIER
+                                                INVENTORY CODE
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="sort"
                                                 data-sort="budget"
                                             >
-                                                SUPPLIER NAME
+                                                INVENTORY NAME
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="sort"
                                                 data-sort="status"
                                             >
-                                                SUPPLIER PIC NAME
+                                                PART NUMBER
                                             </th>
-                                            <th scope="col">
-                                                SUPPLIER CONTACTS
+                                            <th scope="col">INFORMATION</th>
+                                            <th
+                                                scope="col"
+                                                class="sort"
+                                                data-sort="completion"
+                                            >
+                                                STOCK
                                             </th>
                                             <th
                                                 scope="col"
                                                 class="sort"
                                                 data-sort="completion"
                                             >
-                                                COUNTRY
+                                                <div class="text-center">
+                                                    BARCODE
+                                                </div>
                                             </th>
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
                                         <tr
-                                            v-for="dataSupp in allSupplierData"
-                                            :key="dataSupp.code"
+                                            v-for="dataInventory in allInventoryData"
+                                            :key="dataInventory.code"
                                         >
                                             <th scope="row">
-                                                {{ dataSupp.code }}
+                                                {{ dataInventory.code }}
                                             </th>
                                             <td class="budget">
-                                                {{ dataSupp.supplier_name }}
+                                                {{
+                                                    dataInventory.inventory_name
+                                                }}
                                             </td>
                                             <td>
                                                 <span
@@ -185,7 +194,7 @@
                                                 >
                                                     <i class="bg-success"></i>
                                                     <span class="status">{{
-                                                        dataSupp.supplier_pic
+                                                        dataInventory.inventory_part_number
                                                     }}</span>
                                                 </span>
                                             </td>
@@ -198,9 +207,9 @@
                                                             class="bg-success"
                                                         ></i>
                                                         <span class="status">
-                                                            Company Phone :
+                                                            Inventory Price :
                                                             {{
-                                                                dataSupp.supplier_phone
+                                                                dataInventory.inventory_price
                                                             }}</span
                                                         >
                                                     </span>
@@ -212,10 +221,12 @@
                                                         <i
                                                             class="bg-primary"
                                                         ></i>
-                                                        <span class="status">
-                                                            PIC Phone :
+                                                        <span
+                                                            class="badge badge-primary"
+                                                        >
+                                                            Packaging Type 1 :
                                                             {{
-                                                                dataSupp.supplier_pic_phone
+                                                                dataInventory.inventory_unit_1
                                                             }}</span
                                                         >
                                                     </span>
@@ -227,10 +238,12 @@
                                                         <i
                                                             class="bg-warning"
                                                         ></i>
-                                                        <span class="status">
-                                                            PIC Phone :
+                                                        <span
+                                                            class="badge badge-info"
+                                                        >
+                                                            Packaging Type 2 :
                                                             {{
-                                                                dataSupp.supplier_email
+                                                                dataInventory.inventory_unit_2
                                                             }}</span
                                                         >
                                                     </span>
@@ -238,10 +251,29 @@
                                             </td>
                                             <td>
                                                 <span class="badge badge-info">
-                                                    {{
-                                                        dataSupp.supplier_country
-                                                    }}</span
-                                                >
+                                                    current Stok :
+                                                    <p
+                                                        class="text-primary text-white"
+                                                    >
+                                                        {{
+                                                            dataInventory.inventory_stok
+                                                        }}
+                                                    </p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <img
+                                                        class="barcode rounded mx-auto d-block"
+                                                        :src="
+                                                            getBarcodeUrl(
+                                                                dataInventory.inventory_barcode
+                                                            )
+                                                        "
+                                                        alt=""
+                                                        style="max-width: 70px"
+                                                    />
+                                                </span>
                                             </td>
                                             <td class="text-right">
                                                 <div class="dropdown">
@@ -267,7 +299,7 @@
                                                             data-target="#modal-detail-supplier"
                                                             @click.prevent="
                                                                 suppData(
-                                                                    dataSupp.code
+                                                                    dataInventory.code
                                                                 )
                                                             "
                                                         >
@@ -287,7 +319,7 @@
                                                             data-target="#modalEdit"
                                                             @click.prevent="
                                                                 suppData(
-                                                                    dataSupp.code
+                                                                    dataInventory.code
                                                                 )
                                                             "
                                                         >
@@ -307,7 +339,7 @@
                                                             data-target="#modalDelete"
                                                             @click.prevent="
                                                                 deleteModal(
-                                                                    dataSupp.code
+                                                                    dataInventory.code
                                                                 )
                                                             "
                                                         >
@@ -974,7 +1006,7 @@ export default {
     },
     mounted() {
         // console.log("Mounted Function Called");
-        this.getAllUserData();
+        this.getAllInventoryData();
     },
     data() {
         return {
@@ -982,31 +1014,29 @@ export default {
             sum: 0,
             modal_open: true,
             modal: "",
-            supplier_code: "",
-            supplier_name: "",
-            supplier_address: "",
-            supplier_country: "",
-            supplier_phone: "",
-            supplier_faxmile: "",
-            supplier_email: "",
-            supplier_tax_number: "",
-            supplier_pic: "",
-            supplier_pic_phone: "",
+            inventory_code: "",
+            inventory_name: "",
+            inventory_type: "",
+            inventory_unit_1: "",
+            inventory_unit_2: "",
+            inventory_price: "",
+            inventory_stok: "",
+            inventory_part_number: "",
+            inventory_images: "",
             alert_modal: false,
             alert_message: "",
             alert_type: "",
             alert_sub_message: "",
-            allSupplierData: {},
-            supplierSchema: {
-                supplier_name: "required",
-                supplier_address: "required|min:10",
-                supplier_country: "required",
-                supplier_phone: "required",
-                supplier_phone_1: "",
-                supplier_faxmile: "",
-                supplier_tax_number: "",
-                supplier_pic: "required",
-                supplier_pic_phone: "required",
+            allInventoryData: {},
+            inventorySchema: {
+                inventory_name: "requiref",
+                inventory_type: "required",
+                inventory_unit_1: "required",
+                inventory_unit_2: "",
+                inventory_price: "",
+                inventory_stok: "",
+                inventory_part_number: "required",
+                inventory_images: "required",
             },
         };
     },
@@ -1016,16 +1046,14 @@ export default {
                 method: "post",
                 url: "http://module.test/api/supplier/",
                 data: {
-                    supplier_name: values.supplier_name,
-                    supplier_address: values.supplier_address,
-                    supplier_country: values.supplier_country,
-                    supplier_phone: values.supplier_phone,
-                    supplier_phone_1: values.supplier_phone_1,
-                    supplier_faxmile: values.supplier_faxmile,
-                    supplier_email: values.supplier_email,
-                    supplier_tax_number: values.supplier_tax_number,
-                    supplier_pic: values.supplier_pic,
-                    supplier_pic_phone: values.supplier_pic_phone,
+                    inventory_name: values.inventory_name,
+                    inventory_type: values.inventory_type,
+                    inventory_unit_1: values.inventory_unit_1,
+                    inventory_unit_2: values.inventory_unit_2,
+                    inventory_price: values.inventory_price,
+                    inventory_stok: values.inventory_stok,
+                    inventory_part_number: values.inventory_part_number,
+                    inventory_images: values.inventory_images,
                 },
             })
                 .then((resp) => {
@@ -1035,7 +1063,7 @@ export default {
                     // $("#modal-create-supplier").modal("hide");
                     this.alert_modal = true;
                     this.alert_message = "Berhasil";
-                    this.getAllUserData();
+                    this.getAllInventoryData();
                     this.alert_sub_message =
                         "Your Supplier Data Succesfully Added";
                     this.alert_type = "alert-success";
@@ -1047,12 +1075,12 @@ export default {
                     console.log(error);
                 });
         },
-        getAllUserData() {
+        getAllInventoryData() {
             axios({
                 method: "get",
-                url: "http://module.test/api/supplier/",
+                url: "http://module.test/api/inventory/",
             }).then((responData) => {
-                this.allSupplierData = responData.data.supplier;
+                this.allInventoryData = responData.data.inventory;
             });
         },
         suppData(id) {
@@ -1093,7 +1121,7 @@ export default {
                 // console.log(res);
                 this.modal = "fade hide";
                 this.alert_modal = true;
-                this.getAllUserData();
+                this.getAllInventoryData();
                 this.alert_message = "Berhasil Update Data,";
                 this.alert_sub_message = res.data.message;
                 this.alert_type = "alert-success";
@@ -1113,7 +1141,7 @@ export default {
                 // console.log(res.data.message);
                 this.modal = "fade hide";
                 this.alert_modal = true;
-                this.getAllUserData();
+                this.getAllInventoryData();
                 this.alert_message = "Berhasil Hapus Data,";
                 this.alert_sub_message = res.data.message;
                 this.alert_type = "alert-danger";
@@ -1121,6 +1149,10 @@ export default {
                     this.alert_modal = false;
                 }, 4500); // 4.5 Detik
             });
+        },
+        getBarcodeUrl(imagesData) {
+            var images = "/inventory/qrcode/" + imagesData;
+            return images;
         },
     },
 };
