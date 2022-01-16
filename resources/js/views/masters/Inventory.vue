@@ -574,22 +574,21 @@
                         </div>
                         <div class="form-group">
                             <label
-                                for="supplier_country"
+                                for="inventory_price"
                                 class="form-control-label"
-                                >Supplier Country</label
+                                >Inventory Price</label
                             >
                             <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
-                                placeholder="Indonesia"
-                                id="supplier_country"
-                                name="supplier_country"
-                                rows="5"
+                                placeholder="Inventory Price"
+                                id="inventory_price"
+                                name="inventory_price"
                             />
 
                             <ErrorMessage
                                 class="text-danger text-xs"
-                                name="supplier_country"
+                                name="inventory_price"
                             />
                         </div>
                         <div class="form-group">
@@ -1086,7 +1085,6 @@ export default {
         // console.log("Mounted Function Called");
         this.getAllInventoryData();
     },
-    computed: {},
     data() {
         return {
             userData: JSON.parse(localStorage.getItem("user")),
@@ -1098,7 +1096,7 @@ export default {
             inventory_type: "",
             inventory_unit_1: "",
             inventory_unit_2: "",
-            inventory_price: "",
+            inventory_price: 0,
             inventory_stok: "",
             inventory_part_number: "",
             inventory_images: "",
@@ -1107,8 +1105,9 @@ export default {
             alert_type: "",
             alert_sub_message: "",
             allInventoryData: {},
+            inputCureencyActive: false,
             inventorySchema: {
-                inventory_name: "requiref",
+                inventory_name: "required",
                 inventory_type: "required",
                 inventory_unit_1: "required",
                 inventory_unit_2: "",
@@ -1119,6 +1118,7 @@ export default {
             },
         };
     },
+    computed: {},
     methods: {
         createForm(values, { resetForm }) {
             axios({
@@ -1244,6 +1244,14 @@ export default {
                 minimumFractionDigits: 0,
             });
             return formatter.format(value);
+        },
+        // input rupiah
+        inputRupiahPrice() {
+            this.inventory_price = this.inventory_price.replace(
+                /^-?\d*[.,]?\d{0,2}$/,
+                0
+            );
+            console.log(typeof this.inventory_price);
         },
     },
 };
