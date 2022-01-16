@@ -32,12 +32,13 @@ class InventoryController extends Controller
             }
             $createInventory->inventory_name = $data_parsing['inventory_name'];
             $createInventory->inventory_description = $data_parsing['inventory_description'];
-            $createInventory->inventory_type = $data_parsing['inventory_type'];
+            $createInventory->inventory_type_1 = $data_parsing['inventory_type_1'];
+            $createInventory->inventory_type_2 = $data_parsing['inventory_type_2'];
             $createInventory->inventory_unit_1 = $data_parsing['inventory_unit_1'];
             $createInventory->inventory_unit_2 = $data_parsing['inventory_unit_2'];
             $createInventory->inventory_price = $data_parsing['inventory_price'];
             $createInventory->inventory_stok = $data_parsing['inventory_stok'];
-            $createInventory->inventory_barcode = $barcode->createBarcode('qrinventory-'. $createInventory->code, $createInventory->code, 'inventory');
+            $createInventory->inventory_barcode = $barcode->createBarcode('qrinventory-' . $createInventory->code, $createInventory->code, 'inventory');
             $createInventory->inventory_part_number = $data_parsing['inventory_part_number'];
             $createInventory->inventory_images = $image->upload($request->file('inventory_images'), 'Inventory', 'inventory');
             $createInventory->save();

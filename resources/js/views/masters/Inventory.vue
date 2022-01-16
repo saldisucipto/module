@@ -209,9 +209,11 @@
                                                         <span class="status">
                                                             Inventory Price :
                                                             {{
-                                                                dataInventory.inventory_price
-                                                            }}</span
-                                                        >
+                                                                rupiahFormat(
+                                                                    dataInventory.inventory_price
+                                                                )
+                                                            }}
+                                                        </span>
                                                     </span>
                                                 </div>
                                                 <div>
@@ -465,7 +467,7 @@
                             <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
-                                placeholder="TAS / BAJU / CINCIN"
+                                placeholder="Inventory Name, Example. Cloth, Bag, T-Shirt. etc"
                                 id="inventory_name"
                                 name="inventory_name"
                             />
@@ -476,23 +478,99 @@
                         </div>
                         <div class="form-group">
                             <label
-                                for="supplier_address"
+                                for="inventory_description"
                                 class="form-control-label"
-                                >Supplier Adress</label
+                                >Inventory Description</label
                             >
                             <vee-field
                                 as="textarea"
                                 class="form-control form-control-sm"
                                 type="text"
-                                placeholder="Jl. Jakarta Timur, DKI JAKARTA"
-                                id="supplier_address"
-                                name="supplier_address"
+                                placeholder="Inventory Information"
+                                id="inventory_description"
+                                name="inventory_description"
                                 rows="5"
                             />
                             <ErrorMessage
                                 class="text-danger text-xs"
-                                name="supplier_address"
+                                name="inventory_description"
                             />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label"
+                                    >Type Inventory</label
+                                >
+                                <vee-field
+                                    as="select"
+                                    name="inventory_type_1"
+                                    id="inventory_type_1"
+                                    class="form-control form-control-sm"
+                                >
+                                    <option value="">
+                                        Select Type Inventory
+                                    </option>
+                                    <option value="PCS">PCS</option>
+                                    <option value="MTR">MTR</option>
+                                    <option value="ROLL">ROLL</option>
+                                    <option value="LOT">LOT</option>
+                                </vee-field>
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_type_1"
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label">Unit</label>
+                                <vee-field
+                                    type="number"
+                                    name="inventory_unit_1"
+                                    class="form-control form-control-sm"
+                                    placeholder="1 / 6 / 30 / 12"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_unit_1"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label"
+                                    >Type Inventory</label
+                                >
+                                <vee-field
+                                    as="select"
+                                    name="inventory_type_2"
+                                    id="inventory_type_2"
+                                    class="form-control form-control-sm"
+                                >
+                                    <option value="">
+                                        Select Type Inventory
+                                    </option>
+                                    <option value="BOX">BOX</option>
+                                    <option value="KG">KG</option>
+                                    <option value="PACK">PACK</option>
+                                </vee-field>
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_type_2"
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label">Unit</label>
+                                <vee-field
+                                    type="number"
+                                    name="inventory_unit_2"
+                                    class="form-control form-control-sm"
+                                    placeholder="1 / 6 / 30 / 12"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_unit_2"
+                                />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label
@@ -1008,6 +1086,7 @@ export default {
         // console.log("Mounted Function Called");
         this.getAllInventoryData();
     },
+    computed: {},
     data() {
         return {
             userData: JSON.parse(localStorage.getItem("user")),
@@ -1153,6 +1232,18 @@ export default {
         getBarcodeUrl(imagesData) {
             var images = "/inventory/qrcode/" + imagesData;
             return images;
+        },
+        // rupiah format
+        rupiahFormat(value) {
+            if (typeof value !== "number") {
+                return value;
+            }
+            var formatter = new Intl.NumberFormat("id-ID", {
+                style: "currency",
+                currency: "IDR",
+                minimumFractionDigits: 0,
+            });
+            return formatter.format(value);
         },
     },
 };
