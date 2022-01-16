@@ -452,26 +452,26 @@
                 <div class="modal-body">
                     <vee-form
                         role="form"
-                        :validation-schema="supplierSchema"
+                        :validation-schema="inventorySchema"
                         ref="anyName"
                         @submit="createForm"
                     >
                         <div class="form-group">
                             <label
-                                for="supplier_name"
+                                for="inventory_name"
                                 class="form-control-label"
-                                >Supplier Name</label
+                                >Inventory Name</label
                             >
                             <vee-field
                                 class="form-control form-control-sm"
                                 type="text"
-                                placeholder="PT.Maju Mundur Sentosa"
-                                id="supplier_name"
-                                name="supplier_name"
+                                placeholder="TAS / BAJU / CINCIN"
+                                id="inventory_name"
+                                name="inventory_name"
                             />
                             <ErrorMessage
                                 class="text-danger text-xs"
-                                name="supplier_name"
+                                name="inventory_name"
                             />
                         </div>
                         <div class="form-group">

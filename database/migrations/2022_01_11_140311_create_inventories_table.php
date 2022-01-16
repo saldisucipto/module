@@ -18,7 +18,8 @@ class CreateInventoriesTable extends Migration
             $table->string('inventory_name', 50);
             $table->text('inventory_description');
             $table->string('inventory_part_number', 15)->nullable();
-            $table->string('inventory_type', 4);
+            $table->string('inventory_type_1', 4);
+            $table->string('inventory_type_2', 4);
             $table->tinyInteger('inventory_unit_1',);
             $table->tinyInteger('inventory_unit_2',);
             $table->bigInteger('inventory_price');
