@@ -578,12 +578,14 @@
                                 class="form-control-label"
                                 >Inventory Price</label
                             >
-                            <vee-field
+                            <input
                                 class="form-control form-control-sm"
+                                ref="inputan"
                                 type="text"
                                 placeholder="Inventory Price"
                                 id="inventory_price"
                                 name="inventory_price"
+                                @keyup="priceInput"
                             />
 
                             <ErrorMessage
@@ -1246,12 +1248,24 @@ export default {
             return formatter.format(value);
         },
         // input rupiah
-        inputRupiahPrice() {
-            this.inventory_price = this.inventory_price.replace(
-                /^-?\d*[.,]?\d{0,2}$/,
-                0
-            );
-            console.log(typeof this.inventory_price);
+        priceInput() {
+            var number_string = this.$refs.inputan.value
+                .replace(/[^,\d]/g, "")
+                .toString();
+            var split = number_string.split(",");
+            var sisa = split[0].length % 3;
+            var rupiah = split[0].substr(0, sisa);
+            var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                var separator = sisa ? "." : "";
+                rupiah += separator + ribuan.join(".");
+            }
+            rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+            // console.log(rupiah);
+            this.$refs.inputan.value = "Rp. " + rupiah;
+            this.inventory_price = number_string;
+            console.log(this.inventory_price);
         },
     },
 };
