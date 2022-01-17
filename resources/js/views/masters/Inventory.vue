@@ -587,125 +587,71 @@
                                 name="inventory_price"
                                 @keyup="priceInput"
                             />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-2">
+                                <label
+                                    for="inventory_stok"
+                                    class="form-control-label"
+                                    >Stok</label
+                                >
+                                <vee-field
+                                    class="form-control form-control-sm"
+                                    type="number"
+                                    placeholder="Stock"
+                                    maxlength="4"
+                                    id="inventory_stok"
+                                    name="inventory_stok"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_stok"
+                                />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label
+                                    for="inventory_part_number"
+                                    class="form-control-label"
+                                    >Inventory Part Number</label
+                                >
+                                <vee-field
+                                    class="form-control form-control-sm"
+                                    type="text"
+                                    placeholder="Part Number"
+                                    maxlength="13"
+                                    id="inventory_part_number"
+                                    name="inventory_part_number"
+                                />
 
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="inventory_price"
-                            />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_part_number"
+                                />
+                            </div>
                         </div>
                         <div class="form-group">
                             <label
-                                for="supplier_phone"
+                                for="inventory_images"
                                 class="form-control-label"
-                                >Supplier Phone</label
+                                >Inventory Images</label
                             >
                             <vee-field
-                                class="form-control form-control-sm"
-                                type="text"
-                                placeholder="021 xxxx xxxx"
-                                maxlength="13"
-                                id="supplier_phone"
-                                name="supplier_phone"
+                                class="form-control"
+                                type="file"
+                                id="inventory_images"
+                                name="inventory_images"
+                                @change="imageUpload"
                             />
                             <ErrorMessage
                                 class="text-danger text-xs"
-                                name="supplier_phone"
+                                name="inventory_images"
                             />
                         </div>
-                        <div class="form-group">
-                            <label
-                                for="supplier_faxmile"
-                                class="form-control-label"
-                                >Supplier Faxmile</label
-                            >
-                            <vee-field
-                                class="form-control form-control-sm"
-                                type="text"
-                                placeholder="021 xxxx xxxx (Supplier Fax Number)"
-                                maxlength="13"
-                                id="supplier_faxmile"
-                                name="supplier_faxmile"
-                            />
-
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="supplier_faxmile"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label
-                                for="supplier_email"
-                                class="form-control-label"
-                                >Supplier Email</label
-                            >
-                            <vee-field
-                                class="form-control form-control-sm"
-                                type="email"
-                                placeholder="email@email.com"
-                                id="supplier_email"
-                                name="supplier_email"
-                            />
-
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="supplier_email"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label
-                                for="supplier_tax_number"
-                                class="form-control-label"
-                                >Supplier Tax / NPWP</label
-                            >
-                            <vee-field
-                                class="form-control form-control-sm"
-                                type="text"
-                                placeholder="XX.XXX.XXX.X-XXX.XXX"
-                                maxlength="15"
-                                id="supplier_tax_number"
-                                name="supplier_tax_number"
-                            />
-
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="supplier_tax_number"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label for="supplier_pic" class="form-control-label"
-                                >Supplier Contact Person / Person In
-                                Charge</label
-                            >
-                            <vee-field
-                                class="form-control form-control-sm"
-                                type="text"
-                                placeholder="Sdri. Bunga Anggita"
-                                maxlength="15"
-                                id="supplier_pic"
-                                name="supplier_pic"
-                            />
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="supplier_pic"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label
-                                for="supplier_pic_phone"
-                                class="form-control-label"
-                                >Contact Person Phone</label
-                            >
-                            <vee-field
-                                class="form-control form-control-sm"
-                                type="text"
-                                placeholder="021 xxxx xxxx (Optional)"
-                                maxlength="13"
-                                id="supplier_pic_phone"
-                                name="supplier_pic_phone"
-                            />
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="supplier_pic_phone"
+                        <div v-if="imagePreviewURL" class="form-group">
+                            <img
+                                class="img-thumbnail rounded mx-auto d-block"
+                                :src="imagePreviewURL"
+                                alt=""
                             />
                         </div>
                         <button type="submit" class="btn btn-primary">
@@ -1095,7 +1041,9 @@ export default {
             modal: "",
             inventory_code: "",
             inventory_name: "",
-            inventory_type: "",
+            inventory_type_1: "",
+            inventory_description: "",
+            inventory_type_2: "",
             inventory_unit_1: "",
             inventory_unit_2: "",
             inventory_price: 0,
@@ -1107,13 +1055,11 @@ export default {
             alert_type: "",
             alert_sub_message: "",
             allInventoryData: {},
-            inputCureencyActive: false,
+            imagePreviewURL: null,
             inventorySchema: {
                 inventory_name: "required",
-                inventory_type: "required",
+                inventory_type_1: "required",
                 inventory_unit_1: "required",
-                inventory_unit_2: "",
-                inventory_price: "",
                 inventory_stok: "",
                 inventory_part_number: "required",
                 inventory_images: "required",
@@ -1125,16 +1071,21 @@ export default {
         createForm(values, { resetForm }) {
             axios({
                 method: "post",
-                url: "http://module.test/api/supplier/",
+                url: "http://module.test/api/inventory/",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
                 data: {
                     inventory_name: values.inventory_name,
-                    inventory_type: values.inventory_type,
+                    inventory_description: values.inventory_description,
+                    inventory_type_1: values.inventory_type_1,
+                    inventory_type_2: values.inventory_type_2,
                     inventory_unit_1: values.inventory_unit_1,
                     inventory_unit_2: values.inventory_unit_2,
-                    inventory_price: values.inventory_price,
+                    inventory_price: this.inventory_price,
                     inventory_stok: values.inventory_stok,
                     inventory_part_number: values.inventory_part_number,
-                    inventory_images: values.inventory_images,
+                    inventory_images: this.inventory_images,
                 },
             })
                 .then((resp) => {
@@ -1146,7 +1097,7 @@ export default {
                     this.alert_message = "Berhasil";
                     this.getAllInventoryData();
                     this.alert_sub_message =
-                        "Your Supplier Data Succesfully Added";
+                        "Your Inventory Data Succesfully Added";
                     this.alert_type = "alert-success";
                     setTimeout(() => {
                         this.alert_modal = false;
@@ -1265,7 +1216,19 @@ export default {
             // console.log(rupiah);
             this.$refs.inputan.value = "Rp. " + rupiah;
             this.inventory_price = number_string;
-            console.log(this.inventory_price);
+            // console.log(this.inventory_price);
+        },
+        // image upload
+        imageUpload(payload) {
+            const file = payload.target.files[0];
+            this.inventory_images = payload.target.files[0];
+            if (file) {
+                this.imagePreviewURL = URL.createObjectURL(file); // add url images
+                URL.revokeObjectURL(file); // free up memory
+            } else {
+                this.imagePreviewURL = null;
+            }
+            // console.log(this.imagePreviewURL);
         },
     },
 };
