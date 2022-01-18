@@ -300,7 +300,7 @@
                                                             data-toggle="modal"
                                                             data-target="#modal-detail-supplier"
                                                             @click.prevent="
-                                                                suppData(
+                                                                inventoryData(
                                                                     dataInventory.code
                                                                 )
                                                             "
@@ -320,7 +320,7 @@
                                                             data-toggle="modal"
                                                             data-target="#modalEdit"
                                                             @click.prevent="
-                                                                suppData(
+                                                                inventoryData(
                                                                     dataInventory.code
                                                                 )
                                                             "
@@ -637,6 +637,7 @@
                             >
                             <vee-field
                                 class="form-control"
+                                ref="imagesFile"
                                 type="file"
                                 id="inventory_images"
                                 name="inventory_images"
@@ -672,22 +673,22 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-detail-supplierTitle">
-                        Detail Supplier Data
+                        Detail Inventory Data
                     </h5>
                 </div>
                 <div class="">
                     <table class="table table-responsive">
                         <tbody>
                             <tr>
-                                <th>Supplier Code</th>
+                                <th>Inventory Code</th>
                                 <td class="fw-bold">
-                                    <strong>{{ supplier_code }}</strong>
+                                    <strong>{{ inventory_code }}</strong>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Supplier Name</th>
+                                <th>Inventory Name</th>
                                 <td class="fw-bold text-uppercase">
-                                    <strong>{{ supplier_name }}</strong>
+                                    <strong>{{ inventory_name }}</strong>
                                 </td>
                             </tr>
                             <tr>
@@ -1063,6 +1064,8 @@ export default {
                 inventory_unit_1: "required",
                 inventory_stok: "",
                 inventory_part_number: "required",
+                inventory_images: "",
+                inventory_price: "",
             },
         };
     },
@@ -1109,8 +1112,8 @@ export default {
                     this.modal = "fade hide";
                     this.alert_modal = true;
                     this.alert_message = "Berhasil";
-                    this.inventory_stok = '';
-                    this.inventory_images = '';
+                    this.$refs.inputan.value = "";
+                    this.$refs.imagesFile.value = "";
                     this.getAllInventoryData();
                     this.alert_sub_message =
                         "Your Inventory Data Succesfully Added";
@@ -1129,22 +1132,25 @@ export default {
                 this.allInventoryData = responData.data.inventory;
             });
         },
-        suppData(id) {
+        inventoryData(id) {
             axios({
                 method: "get",
-                url: `http://module.test/api/supplier/${id}`,
+                url: `http://module.test/api/inventory/${id}`,
             }).then((response) => {
-                this.supplier_code = response.data.supplier.code;
-                this.supplier_name = response.data.supplier.supplier_name;
-                this.supplier_address = response.data.supplier.supplier_address;
-                this.supplier_country = response.data.supplier.supplier_country;
-                this.supplier_phone = response.data.supplier.supplier_phone;
-                this.supplier_faxmile = response.data.supplier.supplier_faxmile;
-                this.supplier_email = response.data.supplier.supplier_email;
-                this.supplier_tax_number =
-                    response.data.supplier.supplier_tax_number;
-                this.supplier_pic = response.data.supplier.supplier_pic;
-                this.supplier_pic_phone = response.data.supplier.supplier_phone;
+                this.inventory_code = response.data.data.code;
+                this.inventory_name = response.data.data.inventory_name;
+                this.inventory_part_number =
+                    response.data.data.inventory_part_number;
+                this.inventory_stok = response.data.data.inventory_stok;
+                this.inventory_description =
+                    response.data.data.inventory_description;
+                this.inventory_type_1 = response.data.data.inventory_type_1;
+                this.inventory_unit_1 = response.data.data.inventory_unit_1;
+                this.inventory_type_2 = response.data.data.inventory_type_2;
+                this.inventory_unit_2 = response.data.data.inventory_unit_2;
+                this.inventory_price = response.data.data.inventory_price;
+                this.inventory_bracode = response.data.data.inventory_bracode;
+                this.inventory_images = response.data.data.inventory_images;
             });
         },
         updateAction() {

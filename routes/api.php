@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     // Master Inventory API EndPoint
     Route::group(['prefix' => 'inventory'], function () {
         Route::match(['get', 'post'], '/', 'API\InventoryController@index')->name('inventory');
+        Route::match(['get', 'put'], '/{code}', 'API\InventoryController@infoUpdate')->name('inventoryInformasi');
     });
 });
 

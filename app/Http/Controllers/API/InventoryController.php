@@ -47,4 +47,13 @@ class InventoryController extends Controller
             return response()->json(['message' => 'Berhasil Membuat Inventory Baru', 'data' => $data_parsing], 201);
         }
     }
+
+    // update info
+    public function infoUpdate(Request $request, $code = null)
+    {
+        if ($request->isMethod('get')) {
+            $infoInventory = Inventory::find($code);
+            return response()->json(['message' => 'success getting data', 'data' => $infoInventory], 200);
+        }
+    }
 }
