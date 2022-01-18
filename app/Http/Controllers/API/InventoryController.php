@@ -24,9 +24,11 @@ class InventoryController extends Controller
             $number = new Numbering;
             $image = new ImageHandling;
             $barcode = new BarcodeGenerator;
+            // return response()->json($request->file('inventory_images'));
+            // die;
 
             if ($inventory_terakhir == null) {
-                $createInventory->code = $number->createNumbering('INVT21ABC00000', 'INVT', $data_parsing['inventory_name']);
+                $createInventory->code = $number->createNumbering('INVT21ABC000000', 'INVT', $data_parsing['inventory_name']);
             } else {
                 $createInventory->code = $number->createNumbering($inventory_terakhir['code'], 'INVT', $data_parsing['inventory_name']);
             }

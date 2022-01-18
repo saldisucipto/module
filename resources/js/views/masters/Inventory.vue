@@ -642,10 +642,6 @@
                                 name="inventory_images"
                                 @change="imageUpload"
                             />
-                            <ErrorMessage
-                                class="text-danger text-xs"
-                                name="inventory_images"
-                            />
                         </div>
                         <div v-if="imagePreviewURL" class="form-group">
                             <img
@@ -778,7 +774,11 @@
         aria-hidden="true"
     >
         <div class="modal-dialog" role="document">
-            <vee-form role="form" @submit="updateAction">
+            <vee-form
+                role="form"
+                @submit="updateAction"
+                enctype="multipart/form-data"
+            >
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalEditTitle">
@@ -1056,45 +1056,61 @@ export default {
             alert_sub_message: "",
             allInventoryData: {},
             imagePreviewURL: null,
+            success: "",
             inventorySchema: {
                 inventory_name: "required",
                 inventory_type_1: "required",
                 inventory_unit_1: "required",
                 inventory_stok: "",
                 inventory_part_number: "required",
-                inventory_images: "required",
             },
         };
     },
     computed: {},
     methods: {
+        // image upload
+        imageUpload(payload) {
+            const file = payload.target.files[0];
+            this.inventory_images = payload.target.files[0];
+            if (file) {
+                this.imagePreviewURL = URL.createObjectURL(file); // add url images
+                URL.revokeObjectURL(file); // free up memory
+            } else {
+                this.imagePreviewURL = null;
+            }
+            console.log(this.inventory_images);
+        },
         createForm(values, { resetForm }) {
-            axios({
-                method: "post",
-                url: "http://module.test/api/inventory/",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-                data: {
-                    inventory_name: values.inventory_name,
-                    inventory_description: values.inventory_description,
-                    inventory_type_1: values.inventory_type_1,
-                    inventory_type_2: values.inventory_type_2,
-                    inventory_unit_1: values.inventory_unit_1,
-                    inventory_unit_2: values.inventory_unit_2,
-                    inventory_price: this.inventory_price,
-                    inventory_stok: values.inventory_stok,
-                    inventory_part_number: values.inventory_part_number,
-                    inventory_images: this.inventory_images,
-                },
-            })
-                .then((resp) => {
-                    // console.log(resp);
+            const config = {
+                headers: { "content-type": "multipart/form-data" },
+            };
+            let formData = new FormData();
+            formData.append("inventory_name", values.inventory_name);
+            formData.append(
+                "inventory_description",
+                values.inventory_description
+            );
+            formData.append("inventory_type_1", values.inventory_type_1);
+            formData.append("inventory_type_2", values.inventory_type_2);
+            formData.append("inventory_unit_1", values.inventory_unit_1);
+            formData.append("inventory_unit_2", values.inventory_unit_2);
+            formData.append("inventory_price", this.inventory_price);
+            formData.append("inventory_stok", values.inventory_stok);
+            formData.append(
+                "inventory_part_number",
+                values.inventory_part_number
+            );
+            formData.append("inventory_images", this.inventory_images);
+
+            axios
+                .post("http://module.test/api/inventory/", formData, config)
+                .then((res) => {
                     resetForm();
                     this.modal = "fade hide";
-                    // $("#modal-create-supplier").modal("hide");
                     this.alert_modal = true;
                     this.alert_message = "Berhasil";
+                    this.inventory_stok = '';
+                    this.inventory_images = '';
                     this.getAllInventoryData();
                     this.alert_sub_message =
                         "Your Inventory Data Succesfully Added";
@@ -1102,9 +1118,7 @@ export default {
                     setTimeout(() => {
                         this.alert_modal = false;
                     }, 4000);
-                })
-                .catch((error) => {
-                    console.log(error);
+                    this.success = res.data.success;
                 });
         },
         getAllInventoryData() {
@@ -1216,19 +1230,6 @@ export default {
             // console.log(rupiah);
             this.$refs.inputan.value = "Rp. " + rupiah;
             this.inventory_price = number_string;
-            // console.log(this.inventory_price);
-        },
-        // image upload
-        imageUpload(payload) {
-            const file = payload.target.files[0];
-            this.inventory_images = payload.target.files[0];
-            if (file) {
-                this.imagePreviewURL = URL.createObjectURL(file); // add url images
-                URL.revokeObjectURL(file); // free up memory
-            } else {
-                this.imagePreviewURL = null;
-            }
-            // console.log(this.imagePreviewURL);
         },
     },
 };
