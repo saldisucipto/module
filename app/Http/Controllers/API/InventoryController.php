@@ -51,9 +51,30 @@ class InventoryController extends Controller
     // update info
     public function infoUpdate(Request $request, $code = null)
     {
+        $infoInventory = Inventory::find($code);
+        $data_parsing = $request->all();
+        $image = new ImageHandling;
         if ($request->isMethod('get')) {
-            $infoInventory = Inventory::find($code);
             return response()->json(['message' => 'success getting data', 'data' => $infoInventory], 200);
+        } elseif ($request->isMethod('post')) {
+            // debug
+            // return response()->json(['data' => $data_parsing]);
+            // die;
+            $infoInventory->inventory_name = $data_parsing['inventory_name'];
+            $infoInventory->inventory_description = $data_parsing['inventory_description'];
+            $infoInventory->inventory_type_1 = $data_parsing['inventory_type_1'];
+            $infoInventory->inventory_type_2 = $data_parsing['inventory_type_2'];
+            $infoInventory->inventory_unit_1 = $data_parsing['inventory_unit_1'];
+            $infoInventory->inventory_unit_2 = $data_parsing['inventory_unit_2'];
+            $infoInventory->inventory_price = $data_parsing['inventory_price'];
+            $infoInventory->inventory_stok = $data_parsing['inventory_stok'];
+            $infoInventory->inventory_part_number = $data_parsing['inventory_part_number'];
+            if ($request->file('inventory_images')) {
+                $infoInventory->inventory_images = $image->upload($request->file('inventory_images'), 'Inventory', 'inventory');
+                $infoInventory->inventory_images = $image->update($infoInventory->inventory_images, 'inventory');
+            }
+            $infoInventory->update();
+            return response()->json(['message' => 'success puting data', 'data' => $infoInventory], 201);
         }
     }
 }

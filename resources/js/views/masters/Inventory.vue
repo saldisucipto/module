@@ -776,199 +776,254 @@
         aria-labelledby="modalEditTitle"
         aria-hidden="true"
     >
-        <div class="modal-dialog" role="document">
-            <vee-form
-                role="form"
-                @submit="updateAction"
-                enctype="multipart/form-data"
-            >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditTitle">
-                            Update Supplier Data
-                        </h5>
-                    </div>
-                    <div class="">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th>Supplier Name</th>
-                                    <td class="fw-bold text-uppercase">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="PT.Maju Mundur Sentosa"
-                                            id="supplier_name"
-                                            name="supplier_name"
-                                            v-model="supplier_name"
-                                        />
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_name"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier Email</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="email"
-                                            placeholder="email@email.com"
-                                            id="supplier_email"
-                                            name="supplier_email"
-                                            v-model="supplier_email"
-                                        />
-
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_email"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr class="w-full">
-                                    <th>Supplier Address</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            as="textarea"
-                                            class="form-control"
-                                            type="text"
-                                            placeholder="Jl. Jakarta Timur, DKI JAKARTA"
-                                            id="supplier_address"
-                                            name="supplier_address"
-                                            rows="5"
-                                            v-model="supplier_address"
-                                        />
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_address"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier Country</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="Indonesia"
-                                            id="supplier_country"
-                                            name="supplier_country"
-                                            v-model="supplier_country"
-                                        />
-
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_country"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier Phone</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="021 xxxx xxxx"
-                                            maxlength="13"
-                                            id="supplier_phone"
-                                            name="supplier_phone"
-                                            v-model="supplier_phone"
-                                        />
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_phone"
-                                        />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>Supplier Fax Number</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="021 xxxx xxxx (Supplier Fax Number)"
-                                            maxlength="13"
-                                            id="supplier_faxmile"
-                                            name="supplier_faxmile"
-                                            v-model="supplier_faxmile"
-                                        />
-
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_faxmile"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier NPWP</th>
-                                    <td class="fw-bold">
-                                        <strong>
-                                            <vee-field
-                                                class="form-control form-control-sm"
-                                                type="text"
-                                                placeholder="XX.XXX.XXX.X-XXX.XXX"
-                                                maxlength="15"
-                                                id="supplier_tax_number"
-                                                name="supplier_tax_number"
-                                                v-model="supplier_tax_number"
-                                        /></strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier PIC Name</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="Sdri. Bunga Anggita"
-                                            maxlength="15"
-                                            id="supplier_pic"
-                                            name="supplier_pic"
-                                            v-model="supplier_pic"
-                                        />
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_pic"
-                                        />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Supplier PIC Phone</th>
-                                    <td class="fw-bold">
-                                        <vee-field
-                                            class="form-control form-control-sm"
-                                            type="text"
-                                            placeholder="021 xxxx xxxx (Optional)"
-                                            maxlength="13"
-                                            id="supplier_pic_phone"
-                                            name="supplier_pic_phone"
-                                            v-model="supplier_pic_phone"
-                                        />
-                                        <ErrorMessage
-                                            class="text-danger text-xs"
-                                            name="supplier_pic_phone"
-                                        />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
+        <div
+            class="modal-dialog modal- modal-dialog-centered modal-"
+            role="document"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="modal-title-default">
+                        <div
+                            class="d-flex justify-content-between align-self-center"
                         >
-                            Tutup
-                        </button>
-                    </div>
+                            <div class="">
+                                <i class="fas fa-dolly text-blue"></i>
+                            </div>
+                            <div class="mx-2 text-blue">
+                                Update Inventory Data
+                            </div>
+                        </div>
+                    </h6>
+                    <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <span class="text-danger" aria-hidden="true">×</span>
+                    </button>
                 </div>
-            </vee-form>
+                <div class="modal-body">
+                    <img
+                        class="img-fluid mx-auto d-block"
+                        :src="`/inventory/${inventory_images}`"
+                        alt="{{ inventory_name }}"
+                        style="max-width: 200px"
+                    />
+                    <vee-form
+                        role="form"
+                        :validation-schema="inventorySchema"
+                        ref="anyName"
+                        @submit="updateAction"
+                    >
+                        <div class="form-group">
+                            <label
+                                for="inventory_name"
+                                class="form-control-label"
+                                >Inventory Name</label
+                            >
+                            <vee-field
+                                class="form-control form-control-sm"
+                                type="text"
+                                placeholder="Inventory Name, Example. Cloth, Bag, T-Shirt. etc"
+                                id="inventory_name"
+                                name="inventory_name"
+                                v-model="inventory_name"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="inventory_name"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label
+                                for="inventory_description"
+                                class="form-control-label"
+                                >Inventory Description</label
+                            >
+                            <vee-field
+                                as="textarea"
+                                class="form-control form-control-sm"
+                                type="text"
+                                placeholder="Inventory Information"
+                                id="inventory_description"
+                                name="inventory_description"
+                                rows="5"
+                                v-model="inventory_description"
+                            />
+                            <ErrorMessage
+                                class="text-danger text-xs"
+                                name="inventory_description"
+                            />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label"
+                                    >Type Inventory</label
+                                >
+                                <vee-field
+                                    as="select"
+                                    name="inventory_type_1"
+                                    id="inventory_type_1"
+                                    class="form-control form-control-sm"
+                                    v-model="inventory_type_1"
+                                >
+                                    <option value="">
+                                        Select Type Inventory
+                                    </option>
+                                    <option value="PCS">PCS</option>
+                                    <option value="MTR">MTR</option>
+                                    <option value="ROLL">ROLL</option>
+                                    <option value="LOT">LOT</option>
+                                </vee-field>
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_type_1"
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label">Unit</label>
+                                <vee-field
+                                    type="number"
+                                    name="inventory_unit_1"
+                                    class="form-control form-control-sm"
+                                    placeholder="1 / 6 / 30 / 12"
+                                    v-model="inventory_unit_1"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_unit_1"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label"
+                                    >Type Inventory</label
+                                >
+                                <vee-field
+                                    as="select"
+                                    name="inventory_type_2"
+                                    id="inventory_type_2"
+                                    class="form-control form-control-sm"
+                                    v-model="inventory_type_2"
+                                >
+                                    <option value="">
+                                        Select Type Inventory
+                                    </option>
+                                    <option value="BOX">BOX</option>
+                                    <option value="KG">KG</option>
+                                    <option value="PACK">PACK</option>
+                                </vee-field>
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_type_2"
+                                />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="form-control-label">Unit</label>
+                                <vee-field
+                                    type="number"
+                                    name="inventory_unit_2"
+                                    class="form-control form-control-sm"
+                                    placeholder="1 / 6 / 30 / 12"
+                                    v-model="inventory_unit_2"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_unit_2"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                for="inventory_price"
+                                class="form-control-label"
+                                >Inventory Price</label
+                            >
+                            <input
+                                class="form-control form-control-sm"
+                                ref="inputan"
+                                type="text"
+                                placeholder="Inventory Price"
+                                id="inventory_price"
+                                name="inventory_price"
+                                @keyup="priceInput"
+                                v-model="inventory_price"
+                            />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-2">
+                                <label
+                                    for="inventory_stok"
+                                    class="form-control-label"
+                                    >Stok</label
+                                >
+                                <vee-field
+                                    class="form-control form-control-sm"
+                                    type="number"
+                                    placeholder="Stock"
+                                    maxlength="4"
+                                    id="inventory_stok"
+                                    name="inventory_stok"
+                                    v-model="inventory_stok"
+                                />
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_stok"
+                                />
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label
+                                    for="inventory_part_number"
+                                    class="form-control-label"
+                                    >Inventory Part Number</label
+                                >
+                                <vee-field
+                                    class="form-control form-control-sm"
+                                    type="text"
+                                    placeholder="Part Number"
+                                    maxlength="13"
+                                    id="inventory_part_number"
+                                    name="inventory_part_number"
+                                    v-model="inventory_part_number"
+                                />
+
+                                <ErrorMessage
+                                    class="text-danger text-xs"
+                                    name="inventory_part_number"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label
+                                for="inventory_images"
+                                class="form-control-label"
+                                >Inventory Images</label
+                            >
+                            <vee-field
+                                class="form-control"
+                                ref="imagesFile"
+                                type="file"
+                                id="inventory_images"
+                                name="inventory_images"
+                                @change="imageUpload"
+                            />
+                        </div>
+                        <div v-if="imagePreviewURL" class="form-group">
+                            <img
+                                class="img-thumbnail rounded mx-auto d-block"
+                                :src="imagePreviewURL"
+                                alt=""
+                            />
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </vee-form>
+                </div>
+            </div>
         </div>
     </div>
     <!-- End Modal Supplier Edit -->
@@ -1155,34 +1210,50 @@ export default {
                 this.inventory_images = response.data.data.inventory_images;
             });
         },
-        updateAction() {
-            axios({
-                method: "put",
-                url: `http://module.test/api/supplier/${this.supplier_code}`,
-                data: {
-                    supplier_code: this.code,
-                    supplier_name: this.supplier_name,
-                    supplier_address: this.supplier_address,
-                    supplier_country: this.supplier_country,
-                    supplier_phone: this.supplier_phone,
-                    supplier_faxmile: this.supplier_faxmile,
-                    supplier_email: this.supplier_email,
-                    supplier_tax_number: this.supplier_tax_number,
-                    supplier_pic: this.supplier_pic,
-                    supplier_pic_phone: this.supplier_phone,
-                },
-            }).then((res) => {
-                // console.log(res);
-                this.modal = "fade hide";
-                this.alert_modal = true;
-                this.getAllInventoryData();
-                this.alert_message = "Berhasil Update Data,";
-                this.alert_sub_message = res.data.message;
-                this.alert_type = "alert-success";
-                setTimeout(() => {
-                    this.alert_modal = false;
-                }, 4500); // 4.5 Detik
-            });
+        updateAction(values, { resetForm }) {
+            const config = {
+                headers: { "content-type": "multipart/form-data" },
+            };
+            let formData = new FormData();
+            formData.append("inventory_name", this.inventory_name);
+            formData.append(
+                "inventory_description",
+                this.inventory_description
+            );
+            formData.append("inventory_type_1", this.inventory_type_1);
+            formData.append("inventory_type_2", this.inventory_type_2);
+            formData.append("inventory_unit_1", this.inventory_unit_1);
+            formData.append("inventory_unit_2", this.inventory_unit_2);
+            formData.append("inventory_price", this.inventory_price);
+            formData.append("inventory_stok", this.inventory_stok);
+            formData.append(
+                "inventory_part_number",
+                this.inventory_part_number
+            );
+            formData.append("inventory_images", this.inventory_images);
+
+            axios
+                .post(
+                    `http://module.test/api/inventory/${this.inventory_code}`,
+                    formData,
+                    config
+                )
+                .then((res) => {
+                    resetForm();
+                    this.modal = "fade hide";
+                    this.alert_modal = true;
+                    this.alert_message = "Berhasil";
+                    this.$refs.inputan.value = "";
+                    this.$refs.imagesFile.value = "";
+                    this.getAllInventoryData();
+                    this.alert_sub_message =
+                        "Your Inventory Data Succesfully Added";
+                    this.alert_type = "alert-success";
+                    setTimeout(() => {
+                        this.alert_modal = false;
+                    }, 4000);
+                    this.success = res.data.success;
+                });
         },
         deleteModal(code) {
             this.supplier_code = code;
