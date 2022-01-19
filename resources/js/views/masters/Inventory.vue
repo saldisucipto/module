@@ -677,6 +677,12 @@
                     </h5>
                 </div>
                 <div class="">
+                    <img
+                        class="img-fluid mx-auto d-block"
+                        :src="`/inventory/${inventory_images}`"
+                        alt="{{ inventory_name }}"
+                        style="max-width: 200px"
+                    />
                     <table class="table table-responsive">
                         <tbody>
                             <tr>
@@ -691,61 +697,57 @@
                                     <strong>{{ inventory_name }}</strong>
                                 </td>
                             </tr>
-                            <tr>
-                                <th>Supplier Email</th>
+                            <tr class="text-align-left">
+                                <th>Inventory Price</th>
                                 <td class="fw-bold">
-                                    <strong>{{ supplier_email }}</strong>
+                                    <strong>{{
+                                        rupiahFormat(inventory_price)
+                                    }}</strong>
+                                </td>
+                            </tr>
+                            <tr class="text-align-left">
+                                <th>Part Number</th>
+                                <td class="fw-bold">
+                                    <strong>{{ inventory_part_number }}</strong>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Supplier Address</th>
+                                <th>Description</th>
                                 <td class="fw-bold">
                                     <textarea
                                         readonly
-                                        class="form-control bg-white text-default"
+                                        class="form-control bg-white fw-bold"
                                         name=""
                                         id=""
                                         cols="30"
                                         rows="5"
-                                        v-model="supplier_address"
+                                        v-model="inventory_description"
                                     >
                                     </textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Supplier Country</th>
+                                <th>Inventory Type</th>
                                 <td class="fw-bold">
-                                    <strong>{{ supplier_country }}</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Supplier Phone</th>
-                                <td class="fw-bold">
-                                    <strong>{{ supplier_phone }}</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Supplier Fax Number</th>
-                                <td class="fw-bold">
-                                    <strong>{{ supplier_faxmile }}</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Supplier NPWP</th>
-                                <td class="fw-bold">
-                                    <strong>{{ supplier_tax_number }}</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Supplier PIC Name</th>
-                                <td class="fw-bold">
-                                    <strong> Sdr/i. {{ supplier_pic }}</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Supplier PIC Phone</th>
-                                <td class="fw-bold">
-                                    <strong>{{ supplier_pic_phone }}</strong>
+                                    <strong>
+                                        Satuan 1 :
+                                        {{ inventory_type_1 }}</strong
+                                    >
+                                    <br />
+                                    <strong>
+                                        QtyPer Satuan :
+                                        {{ inventory_unit_1 }}</strong
+                                    >
+                                    <hr />
+                                    <strong>
+                                        Satuan 2 :
+                                        {{ inventory_type_2 }}</strong
+                                    >
+                                    <br />
+                                    <strong>
+                                        QtyPer Satuan :
+                                        {{ inventory_unit_2 }}</strong
+                                    >
                                 </td>
                             </tr>
                         </tbody>

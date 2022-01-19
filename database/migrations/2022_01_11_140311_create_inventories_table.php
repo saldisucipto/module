@@ -24,7 +24,7 @@ class CreateInventoriesTable extends Migration
             $table->tinyInteger('inventory_unit_2',);
             $table->bigInteger('inventory_price');
             $table->tinyInteger('inventory_stok',);
-            $table->string('inventory_images', 50)->nullable();
+            $table->string('inventory_images')->nullable();
             $table->string('inventory_barcode', 50);
             $table->timestamps();
         });
