@@ -1038,7 +1038,7 @@
         aria-hidden="true"
     >
         <div class="modal-dialog" role="document">
-            <vee-form role="form" @submit="deleteSupplier">
+            <vee-form role="form" @submit="deleteInventory">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5
@@ -1049,7 +1049,7 @@
                         </h5>
                     </div>
                     <div class="mx-auto">
-                        <h5>Delete This Data {{ this.supplier_code }}</h5>
+                        <h5>Delete This Data {{ this.inventory_code }}</h5>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">
@@ -1256,12 +1256,12 @@ export default {
                 });
         },
         deleteModal(code) {
-            this.supplier_code = code;
+            this.inventory_code = code;
         },
-        deleteSupplier() {
+        deleteInventory() {
             axios({
                 method: "delete",
-                url: `http://module.test/api/supplier/d/${this.supplier_code}`,
+                url: `http://module.test/api/inventory/d/${this.inventory_code}`,
             }).then((res) => {
                 // console.log(res.data.message);
                 this.modal = "fade hide";

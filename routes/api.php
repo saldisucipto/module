@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'inventory'], function () {
         Route::match(['get', 'post'], '/', 'API\InventoryController@index')->name('inventory');
         Route::match(['get', 'post'], '/{code}', 'API\InventoryController@infoUpdate')->name('inventoryInformasi');
+        Route::delete('/d/{code}', 'API\InventoryController@infoDelete')->name('inventoryDelete');
     });
 });
 

@@ -77,4 +77,14 @@ class InventoryController extends Controller
             return response()->json(['message' => 'success puting data', 'data' => $infoInventory], 201);
         }
     }
+
+    // delete
+    public function infoDelete($code = null)
+    {
+        $image = new ImageHandling;
+        $infoInventory = Inventory::find($code);
+        $infoInventory->inventory_images = $image->update($infoInventory->inventory_images, 'inventory');
+        $infoInventory->delete();
+        return response()->json($infoInventory, 201);
+    }
 }
