@@ -64,6 +64,23 @@
                             </router-link>
                         </template>
                     </panel-info-link>
+                    <panel-info-link>
+                        <template v-slot:title> Qostings </template>
+                        <template v-slot:sum> {{ sum }} </template>
+                        <template v-slot:presentase> </template>
+                        <template v-slot:monthStatus> </template>
+                        <template v-slot:icons>
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </template>
+                        <template v-slot:links>
+                            <router-link
+                                class="text-bold font-weight-bold"
+                                :to="{ name: 'Qostings' }"
+                            >
+                                MANAGES
+                            </router-link>
+                        </template>
+                    </panel-info-link>
                 </div>
                 <!-- Dark table -->
             </div>

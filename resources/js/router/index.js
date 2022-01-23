@@ -1,15 +1,13 @@
 // Import Library
-import {
-    createRouter,
-    createWebHistory
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 const UserProfile = {
-    template: "<div>Profile</div>"
+    template: "<div>Profile</div>",
 };
 
 // Router Variable
-const routes = [{
+const routes = [
+    {
         path: "/",
         component: () => import("../views/Login.vue"),
         name: "Login",
@@ -53,6 +51,24 @@ const routes = [{
         component: () => import("../views/masters/Inventory.vue"),
         // component: UserProfile,
         name: "Inventory",
+        meta: {
+            auth: true,
+        },
+    },
+    {
+        path: "/master/qostings",
+        component: () => import("../views/masters/qostings.vue"),
+        // component: UserProfile,
+        name: "Qostings",
+        meta: {
+            auth: true,
+        },
+    },
+    {
+        path: "/company-info",
+        component: () => import("../views/CompanyInfo.vue"),
+        // component: UserProfile,
+        name: "CompanyInfo",
         meta: {
             auth: true,
         },

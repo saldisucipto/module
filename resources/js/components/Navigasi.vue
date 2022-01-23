@@ -1,29 +1,17 @@
 <template>
     <nav
-        class="
-            navbar navbar-top navbar-expand navbar-dark
-            bg-primary
-            border-bottom
-        "
+        class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom"
     >
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Search form -->
                 <form
-                    class="
-                        navbar-search navbar-search-light
-                        form-inline
-                        mr-sm-3
-                    "
+                    class="navbar-search navbar-search-light form-inline mr-sm-3"
                     id="navbar-search-main"
                 >
                     <div class="form-group mb-0">
                         <div
-                            class="
-                                input-group
-                                input-group-alternative
-                                input-group-merge
-                            "
+                            class="input-group input-group-alternative input-group-merge"
                         >
                             <div class="input-group-prepend">
                                 <span class="input-group-text"
@@ -106,6 +94,14 @@
                                 <i class="ni ni-single-02"></i>
                                 <span>My profile</span>
                             </a>
+                            <router-link
+                                class="dropdown-item"
+                                :to="{ name: 'CompanyInfo' }"
+                            >
+                                <i class="fas fa-building"></i>
+                                <span>Company Information</span>
+                            </router-link>
+
                             <div class="dropdown-divider"></div>
                             <a href="#!" class="dropdown-item">
                                 <i class="ni ni-user-run"></i>
