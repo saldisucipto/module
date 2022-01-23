@@ -1218,11 +1218,14 @@ export default {
                 "inventory_description",
                 this.inventory_description
             );
+            var price_clear = this.$refs.inputan.value
+                .replace(/[^,\d]/g, "")
+                .toString();
             formData.append("inventory_type_1", this.inventory_type_1);
             formData.append("inventory_type_2", this.inventory_type_2);
             formData.append("inventory_unit_1", this.inventory_unit_1);
             formData.append("inventory_unit_2", this.inventory_unit_2);
-            formData.append("inventory_price", values.inventory_price);
+            formData.append("inventory_price", price_clear);
             formData.append("inventory_stok", this.inventory_stok);
             formData.append(
                 "inventory_part_number",
