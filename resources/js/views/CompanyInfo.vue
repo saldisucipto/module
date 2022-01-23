@@ -43,23 +43,43 @@
                                         :validation-schema="inventorySchema"
                                         @submit="createForm"
                                     >
-                                        <div class="form-group">
-                                            <label
-                                                for="inventory_name"
-                                                class="form-control-label"
-                                                >Inventory Name</label
-                                            >
-                                            <vee-field
-                                                class="form-control form-control-sm"
-                                                type="text"
-                                                placeholder="Inventory Name, Example. Cloth, Bag, T-Shirt. etc"
-                                                id="inventory_name"
-                                                name="inventory_name"
-                                            />
-                                            <ErrorMessage
-                                                class="text-danger text-xs"
-                                                name="inventory_name"
-                                            />
+                                        <div class="form-row">
+                                            <div class="form-group col-4">
+                                                <label
+                                                    for="company_name"
+                                                    class="form-control-label"
+                                                    >Company Name</label
+                                                >
+                                                <vee-field
+                                                    class="form-control form-control-sm text-uppercase"
+                                                    type="text"
+                                                    placeholder="PT. MAJU MUNDUR SOLUSI SEJAHTERA"
+                                                    id="company_name"
+                                                    name="company_name"
+                                                />
+                                                <ErrorMessage
+                                                    class="text-danger text-xs"
+                                                    name="company_name"
+                                                />
+                                            </div>
+                                            <div class="form-group col-8">
+                                                <label
+                                                    for="company_name_tag"
+                                                    class="form-control-label"
+                                                    >Company Tagline</label
+                                                >
+                                                <vee-field
+                                                    class="form-control form-control-sm"
+                                                    type="text"
+                                                    placeholder="Solutions For All Your Problem"
+                                                    id="company_name_tag"
+                                                    name="company_name_tag"
+                                                />
+                                                <ErrorMessage
+                                                    class="text-danger text-xs"
+                                                    name="company_name_tag"
+                                                />
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label
