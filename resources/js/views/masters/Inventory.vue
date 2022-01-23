@@ -455,7 +455,6 @@
                     <vee-form
                         role="form"
                         :validation-schema="inventorySchema"
-                        ref="anyName"
                         @submit="createForm"
                     >
                         <div class="form-group">
@@ -950,7 +949,6 @@
                                 id="inventory_price"
                                 name="inventory_price"
                                 @keyup="priceInput"
-                                v-model="inventory_price"
                             />
                         </div>
                         <div class="form-row">
@@ -1224,7 +1222,7 @@ export default {
             formData.append("inventory_type_2", this.inventory_type_2);
             formData.append("inventory_unit_1", this.inventory_unit_1);
             formData.append("inventory_unit_2", this.inventory_unit_2);
-            formData.append("inventory_price", this.inventory_price);
+            formData.append("inventory_price", values.inventory_price);
             formData.append("inventory_stok", this.inventory_stok);
             formData.append(
                 "inventory_part_number",
@@ -1293,9 +1291,11 @@ export default {
         },
         // input rupiah
         priceInput() {
+            // console.log("TARIGERED");
             var number_string = this.$refs.inputan.value
                 .replace(/[^,\d]/g, "")
                 .toString();
+            console.log(number_string);
             var split = number_string.split(",");
             var sisa = split[0].length % 3;
             var rupiah = split[0].substr(0, sisa);
@@ -1310,6 +1310,9 @@ export default {
             this.$refs.inputan.value = "Rp. " + rupiah;
             this.inventory_price = number_string;
         },
+        // coba() {
+        //     console.log("triggered");
+        // },
     },
 };
 </script>
